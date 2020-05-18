@@ -120,7 +120,7 @@ public class UserManager {
         return loginUser;
     }
 
-    public static boolean addUtilisateur(User userToAdd) {
+    public static boolean addUser(User userToAdd) {
         int creerUser = 0;
 
         try {
