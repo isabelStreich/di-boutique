@@ -11,37 +11,39 @@ import java.util.Date;
  *
  * @author istreich
  */
-public class Client {
+public class User {
 
-    private int idClient;
-    private String nomClient;
+    private int idUser;
+    private String nomUser;
     private String email;
     private String password;
+    private int idRole;
 
-    public Client() {
+    public User() {
     }
 
-    public Client(int idClient, String nomClient, String email, String password) {
-        this.idClient = idClient;
-        this.nomClient = nomClient;
+    public User(int idUser, String nomUser, String email, String password, int idRole) {
+        this.idUser = idUser;
+        this.nomUser = nomUser;
         this.email = email;
         this.password = password;
+        this.idRole = idRole;
     }
 
-    public int getIdClient() {
-        return idClient;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public String getNomClient() {
-        return nomClient;
+    public String getNomUser() {
+        return nomUser;
     }
 
-    public void setNomClient(String nomClient) {
-        this.nomClient = nomClient;
+    public void setNomUser(String nomUser) {
+        this.nomUser = nomUser;
     }
 
     public String getEmail() {
@@ -59,5 +61,15 @@ public class Client {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(int idRole) {
+        this.idRole = idRole;
+    }
+    
+
 
 }

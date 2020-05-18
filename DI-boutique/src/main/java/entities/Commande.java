@@ -14,16 +14,16 @@ import java.util.Date;
 public class Commande {
 
     private int idCommande;
-    private Client idClient;
+    private int idUser;
     private int montantCommande;
     private Date dateCommande;
 
     public Commande() {
     }
 
-    public Commande(int idCommande, Client idClient, int montantCommande, Date dateCommande) {
+    public Commande(int idCommande, int idUser, int montantCommande, Date dateCommande) {
         this.idCommande = idCommande;
-        this.idClient = idClient;
+        this.idUser = idUser;
         this.montantCommande = montantCommande;
         this.dateCommande = dateCommande;
     }
@@ -36,12 +36,12 @@ public class Commande {
         this.idCommande = idCommande;
     }
 
-    public Client getIdClient() {
-        return idClient;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setIdClient(Client idClient) {
-        this.idClient = idClient;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getMontantCommande() {
@@ -59,4 +59,6 @@ public class Commande {
     public void setDateCommande(Date dateCommande) {
         this.dateCommande = dateCommande;
     }
+    
+
 }
