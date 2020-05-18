@@ -17,7 +17,7 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <div class="panier_facture" style="height: 1000px; width: 100% ">   
+        <div>   
 
             <% if (request.getAttribute("panier") != null) {
                     HashMap<Produit, Integer> listePanier = (HashMap<Produit, Integer>) request.getAttribute("panier");
@@ -27,14 +27,14 @@
                 <%while (listeDesProduitPanier.hasNext()) {
                         Produit produit = (Produit) listeDesProduitPanier.next();
                 %>
-                <div class="panier">
+                <div>
                     <h4><%= produit.getNomProduit()%></h4>
                     <h4><%= listePanier.get(produit)%></h4>
                     <h4><%= listePanier.get(produit) * produit.getPrixProduit()%>$</h4>
 
                     <h4>
                         <a href="actionController?controller=panier&action=remove&id_produit=<%= produit.getIdProduit()%>">
-                            <img src="images/icons_site/remove_icon.png" alt="enlever produt" style="width:42px; height: 31px; "/>
+                            <img src="img/remove_icon.png" alt="enlever produit" style="width:42px; height: 31px; "/>
                         </a>
                     </h4>
                 </div>
@@ -43,8 +43,8 @@
 
             <%}%>
 
+        </div>
 
-
-            <%@include file="footer.jsp" %>
+        <%@include file="footer.jsp" %>
     </body>
 </html>
