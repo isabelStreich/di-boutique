@@ -36,7 +36,7 @@ CREATE TABLE `categorie` (
 
 LOCK TABLES `categorie` WRITE;
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
-INSERT INTO `categorie` VALUES (1,'Homme','imageCatHomme'),(2,'Femme','imageCatFemme'),(3,'Enfant','imageCatEnfant'),(4,'Accessoires','imageCatAccessoires');
+INSERT INTO `categorie` VALUES (1,'PourLui','homme1.jpg'),(2,'PourElle','femme1.jpg'),(3,'Enfant','enfant1.jpg'),(4,'Accessoires','accessoire1.jpg');
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,14 +50,11 @@ DROP TABLE IF EXISTS `client`;
 CREATE TABLE `client` (
   `idClient` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nomClient` tinytext NOT NULL,
-  `dateInscription` datetime NOT NULL,
   `email` tinytext NOT NULL,
   `password` tinytext NOT NULL,
   `idRole` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idClient`),
-  KEY `client_fk` (`idRole`),
-  CONSTRAINT `client_fk` FOREIGN KEY (`idrole`) REFERENCES `role` (`idrole`),
-  CONSTRAINT `client_fk_1` FOREIGN KEY (`idClient`) REFERENCES `commande` (`idCommande`)
+  KEY `client_fk` (`idRole`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,7 +78,6 @@ CREATE TABLE `commande` (
   `idCommande` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idClient` int(10) unsigned NOT NULL,
   `montantCommande` double NOT NULL,
-  `quantityCommande` float NOT NULL,
   `dateCommande` datetime NOT NULL,
   PRIMARY KEY (`idCommande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -107,11 +103,8 @@ CREATE TABLE `detailcommande` (
   `idCommande` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idProduit` int(10) unsigned NOT NULL,
   `prixProduit` double NOT NULL,
-  `quantityProduit` float NOT NULL,
   PRIMARY KEY (`idCommande`),
-  KEY `detailcommande_fk_1` (`idProduit`),
-  CONSTRAINT `detailcommande_fk` FOREIGN KEY (`idCommande`) REFERENCES `commande` (`idCommande`),
-  CONSTRAINT `detailcommande_fk_1` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`idProduit`)
+  KEY `detailcommande_fk_1` (`idProduit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -138,11 +131,9 @@ CREATE TABLE `produit` (
   `imageProduit` tinytext NOT NULL,
   `descriptionProduit` tinytext DEFAULT NULL,
   `prixProduit` double NOT NULL,
-  `quantityProduit` float NOT NULL,
   PRIMARY KEY (`idProduit`),
-  KEY `produit_fk` (`idCategorie`),
-  CONSTRAINT `produit_fk` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `produit_fk` (`idCategorie`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,6 +142,7 @@ CREATE TABLE `produit` (
 
 LOCK TABLES `produit` WRITE;
 /*!40000 ALTER TABLE `produit` DISABLE KEYS */;
+INSERT INTO `produit` VALUES (1,'Angiolo Wholecut Oxford\r\n',1,'homme1.jpg\r\n','Construit à partir d\'une seule pièce de cuir de veau bruni, cet élégant oxford italien offre un attrait propre et classique.\r\n',975),(2,'Shark\' Sandal\r\n',1,'homme2.jpg\r\n','Les sandales durables sont fabriquées à la main par des artisans qualifiés à partir de matériaux respectueux de la Terre pour assurer un environnement sain.\r\n',295.69),(3,'Regal Double Monk Strap Shoe\r\n',1,'homme3.jpg\r\n','Le cuir italien brillant et richement coloré enrichit une chaussure moine espagnole audacieuse avec une texture légèrement altérée.',985),(4,'Durbin Derby Sneaker\r\n',1,'homme4.jpg\r\n','Des matériaux souples et des surpiqûres méticuleuses mettent à jour un beau derby italien équipé d\'un bout recouvert et fixé sur une semelle en caoutchouc contrastante sportive.',529.49),(5,'Papillon Sandal 105\r\n',2,'femme1.jpg\r\n','Cette saison, sortez avec notre sandale tendance. Notre sandale Papilion est méticuleusement confectionnée en Italie à partir de daim velours vert jungle. \r\n',1085),(6,'Badgley Mischka \'Gorgeous\' Crystal Embellished Pointy Toe Pump\r\n',2,'femme2.jpg\r\n','Un design extravagant en cristal placé scintille au talon d\'une pompe en satin magnifique en forme avec un joli bout pointu et doté d\'une assise plantaire rembourrée en mousse pour que vous puissiez danser toute la nuit.\r\n',985.59),(7,'Brochamour Crystal Buckle Flat\r\n',2,'femme3.jpg','Une boucle en cristal scintillant avec des pierres en forme de cœur ardentes donne un effet wow instantané à une pompe en velours de fabrication italienne dans une silhouette classique à bout pointu.\r\n',1595.89),(8,'Lara Peep Toe Bootie\r\n',2,'femme4.jpg','Une ligne de dessus plongeante sinueuse et un bout ouvert rehaussent l\'attitude sensuelle d\'un bottillon en satin noble avec un nœud signature.\r\n',1095.19),(9,'Jefferson Water Friendly Slip-On Vegan Sneaker\r\n',3,'enfant1.jpg','Une silhouette de baskets classique est mise à jour en EVA ultra-léger pour une sensation confortable et coussinée.\r\n',40),(10,'Ankle Strap Ballerina Shoe\r\n',3,'enfant2.jpg','La bordure festonnée ajoute une jolie touche à une ballerine coussinée sécurisée par une fine bride de cheville.\r\n',255),(11,'Leather Crib Shoe',3,'enfant3.jpg','Les détails richelieu offrent une finition impeccable et la doublure en tissu offre un confort pour une chaussure de berceau douce en cuir lisse et blanc.\r\n',55.99),(12,'Neumel II Waterproof Chukka\r\n',3,'enfant4.jpg','Une semelle antidérapante Treadlite by UGG ™ est à la base d\'une botte chukka imperméable chauffée par une doublure UGGpure confortable.\r\n',130.59),(13,'Binder Clip Metallic Diagonal Stripe Leather Flap Bag\r\n',4,'accessoire1.jpg','Les rayures diagonales emblématiques bénéficient d\'une mise à jour glamour et ultra-brillante sur ce sac à rabat en cuir de veau habilement marqué d\'une pince à reliure gravée du logo.\r\n',1540),(14,'Thierry Lasry Rhodeo 43mm Small Round Sunglasses\r\n',4,'accessoire2.jpg','RHUDE, basée à Los Angeles, s\'associe au créateur de lunettes français Thierry Lasry sur ces teintes audacieuses faites à la main à partir d\'acétate italien Mazzucchelli incroyablement durable.\r\n',490),(15,'Baby-X Roller Coaster Buckle Backpack\r\n',4,'accessoire3.jpg','Matthew Williams a rétréci son sac à dos Tank et a ajouté une bandoulière en cuir amovible pour que vous ayez une autre option de transport.\r\n',655.59),(16,'Virginie Fur Felt Hat\r\n',4,'accessoire4.jpg','Une fine bande veloutée entoure un chapeau à large bord couture confectionné en Allemagne à partir d\'un riche feutre de lapin imperméable et façonné avec une couronne moulée.\r\n',670.19);
 /*!40000 ALTER TABLE `produit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +157,7 @@ CREATE TABLE `role` (
   `idrole` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nomRole` tinytext NOT NULL,
   PRIMARY KEY (`idrole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,6 +166,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'admin'),(2,'client');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-17  7:54:05
+-- Dump completed on 2020-05-17 21:07:04
