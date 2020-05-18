@@ -10,10 +10,19 @@ package entities;
  * @author istreich
  */
 public class Categorie {
-    
+
     public int idCategorie;
     public String nomCategorie;
     public String imageCategorie;
+
+    public Categorie() {
+    }
+
+    public Categorie(int idCategorie, String nomCategorie, String imageCategorie) {
+        this.idCategorie = idCategorie;
+        this.nomCategorie = nomCategorie;
+        this.imageCategorie = imageCategorie;
+    }
 
     public int getIdCategorie() {
         return idCategorie;
@@ -38,15 +47,4 @@ public class Categorie {
     public void setImageCategorie(String imageCategorie) {
         this.imageCategorie = imageCategorie;
     }
-
-    public Categorie(int idCategorie, String nomCategorie, String imageCategorie) {
-        this.idCategorie = idCategorie;
-        this.nomCategorie = nomCategorie;
-        this.imageCategorie = imageCategorie;
-    }
-
-    public Categorie() {
-    }
-    
-    
 }

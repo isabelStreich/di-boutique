@@ -12,19 +12,18 @@ import java.util.Date;
  * @author istreich
  */
 public class Client {
+
     private int idClient;
     private String nomClient;
-    private Date dateInscription;
     private String email;
     private String password;
 
     public Client() {
     }
 
-    public Client(int idClient, String nomClient, Date dateInscription, String email, String password) {
+    public Client(int idClient, String nomClient, String email, String password) {
         this.idClient = idClient;
         this.nomClient = nomClient;
-        this.dateInscription = dateInscription;
         this.email = email;
         this.password = password;
     }
@@ -45,14 +44,6 @@ public class Client {
         this.nomClient = nomClient;
     }
 
-    public Date getDateInscription() {
-        return dateInscription;
-    }
-
-    public void setDateInscription(Date dateInscription) {
-        this.dateInscription = dateInscription;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -68,6 +59,5 @@ public class Client {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
 }

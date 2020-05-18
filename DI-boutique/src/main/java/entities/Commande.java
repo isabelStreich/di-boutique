@@ -12,20 +12,19 @@ import java.util.Date;
  * @author istreich
  */
 public class Commande {
+
     private int idCommande;
     private Client idClient;
     private int montantCommande;
-    private int quantityCommande;
     private Date dateCommande;
 
     public Commande() {
     }
 
-    public Commande(int idCommande, Client idClient, int montantCommande, int quantityCommande, Date dateCommande) {
+    public Commande(int idCommande, Client idClient, int montantCommande, Date dateCommande) {
         this.idCommande = idCommande;
         this.idClient = idClient;
         this.montantCommande = montantCommande;
-        this.quantityCommande = quantityCommande;
         this.dateCommande = dateCommande;
     }
 
@@ -53,14 +52,6 @@ public class Commande {
         this.montantCommande = montantCommande;
     }
 
-    public int getQuantityCommande() {
-        return quantityCommande;
-    }
-
-    public void setQuantityCommande(int quantityCommande) {
-        this.quantityCommande = quantityCommande;
-    }
-
     public Date getDateCommande() {
         return dateCommande;
     }
@@ -68,7 +59,4 @@ public class Commande {
     public void setDateCommande(Date dateCommande) {
         this.dateCommande = dateCommande;
     }
-    
-    
-    
 }

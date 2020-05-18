@@ -10,53 +10,41 @@ package entities;
  * @author istreich
  */
 public class DetailCommande {
-    
+
     private int idCommande;
-    private Produit idProduit;
-    private Produit prixProduit;
-    private Produit quantityProduit;
+    private int idProduit;
+    private double prixProduit;
 
     private DetailCommande() {
     }
 
-    private DetailCommande(int idCommande, Produit idProduit, Produit prixProduit, Produit quantityProduit) {
+    private DetailCommande(int idCommande, int idProduit, double prixProduit) {
         this.idCommande = idCommande;
         this.idProduit = idProduit;
         this.prixProduit = prixProduit;
-        this.quantityProduit = quantityProduit;
     }
 
-    private int getIdCommande() {
+    public int getIdCommande() {
         return idCommande;
     }
 
-    private void setIdCommande(int idCommande) {
+    public void setIdCommande(int idCommande) {
         this.idCommande = idCommande;
     }
 
-    private Produit getIdProduit() {
+    public int getIdProduit() {
         return idProduit;
     }
 
-    private void setIdProduit(Produit idProduit) {
+    public void setIdProduit(int idProduit) {
         this.idProduit = idProduit;
     }
 
-    private Produit getPrixProduit() {
+    public double getPrixProduit() {
         return prixProduit;
     }
 
-    private void setPrixProduit(Produit prixProduit) {
+    public void setPrixProduit(double prixProduit) {
         this.prixProduit = prixProduit;
     }
-
-    private Produit getQuantityProduit() {
-        return quantityProduit;
-    }
-
-    private void setQuantityProduit(Produit quantityProduit) {
-        this.quantityProduit = quantityProduit;
-    }
-    
-    
 }

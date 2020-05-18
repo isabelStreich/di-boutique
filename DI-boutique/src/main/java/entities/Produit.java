@@ -10,84 +10,71 @@ package entities;
  * @author istreich
  */
 public class Produit {
+
     private int idProduit;
     private String nomProduit;
-    private Categorie idCategorie;
+    private int idCategorie;
     private String imageProduit;
     private String descriptionProduit;
-    private int prixProduit;
-    private int quantityProduit;
+    private double prixProduit;
 
     private Produit() {
     }
 
-    
-    private Produit(int idProduit, String nomProduit, Categorie idCategorie, String imageProduit, String descriptionProduit, int prixProduit, int quantityProduit) {
+    private Produit(int idProduit, String nomProduit, int idCategorie, String imageProduit, String descriptionProduit, double prixProduit) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.idCategorie = idCategorie;
         this.imageProduit = imageProduit;
         this.descriptionProduit = descriptionProduit;
         this.prixProduit = prixProduit;
-        this.quantityProduit = quantityProduit;
     }
 
-    private int getIdProduit() {
+    public int getIdProduit() {
         return idProduit;
     }
 
-    private void setIdProduit(int idProduit) {
+    public void setIdProduit(int idProduit) {
         this.idProduit = idProduit;
     }
 
-    private String getNomProduit() {
+    public String getNomProduit() {
         return nomProduit;
     }
 
-    private void setNomProduit(String nomProduit) {
+    public void setNomProduit(String nomProduit) {
         this.nomProduit = nomProduit;
     }
 
-    private Categorie getIdCategorie() {
+    public int getIdCategorie() {
         return idCategorie;
     }
 
-    private void setIdCategorie(Categorie idCategorie) {
+    public void setIdCategorie(int idCategorie) {
         this.idCategorie = idCategorie;
     }
 
-    private String getImageProduit() {
+    public String getImageProduit() {
         return imageProduit;
     }
 
-    private void setImageProduit(String imageProduit) {
+    public void setImageProduit(String imageProduit) {
         this.imageProduit = imageProduit;
     }
 
-    private String getDescriptionProduit() {
+    public String getDescriptionProduit() {
         return descriptionProduit;
     }
 
-    private void setDescriptionProduit(String descriptionProduit) {
+    public void setDescriptionProduit(String descriptionProduit) {
         this.descriptionProduit = descriptionProduit;
     }
 
-    private int getPrixProduit() {
+    public double getPrixProduit() {
         return prixProduit;
     }
 
-    private void setPrixProduit(int prixProduit) {
+    public void setPrixProduit(double prixProduit) {
         this.prixProduit = prixProduit;
     }
-
-    private int getQuantityProduit() {
-        return quantityProduit;
-    }
-
-    private void setQuantityProduit(int quantityProduit) {
-        this.quantityProduit = quantityProduit;
-    }
-    
-    
-    
 }
