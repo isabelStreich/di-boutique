@@ -17,22 +17,22 @@
             <div class="products">
                 <img src="img/homme1.jpg" class="logo" alt="homme1">
                 <h3>Pour Lui</h3>
-                <a href="produit.html">Savoir plus</a>
+                <a href="">Savoir plus</a>
             </div>
             <div class="products">
                 <img src="img/femme1.jpg" class="logo" alt="femme1">
                 <h3>Pour Elle</h3>
-                <a href="produit.html">Savoir plus</a>
+                <a href="">Savoir plus</a>
             </div>
             <div class="products">
                 <img src="img/enfant1.jpg" class="logo" alt="enfant1">
                 <h3>Enfant</h3>
-                <a href="produit.html">Savoir plus</a>
+                <a href="">Savoir plus</a>
             </div>
             <div class="products">
                 <img src="img/accessoire1.jpg" class="logo" alt="accessoire1">
                 <h3>Accessoire</h3>
-                <a href="produit.html">Savoir plus</a>
+                <a href="">Savoir plus</a>
             </div>
         </div>
         <%@include file="footer.jsp" %>
