@@ -36,7 +36,7 @@ CREATE TABLE `categorie` (
 
 LOCK TABLES `categorie` WRITE;
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
-INSERT INTO `categorie` VALUES (1,'PourLui','homme1.jpg'),(2,'PourElle','femme1.jpg'),(3,'Enfant','enfant1.jpg'),(4,'Accessoires','accessoire1.jpg');
+INSERT INTO `categorie` VALUES (1,'Homme','homme1.jpg'),(2,'Femme','femme1.jpg'),(3,'Enfant','enfant1.jpg'),(4,'Accessoires','accessoire1.jpg');
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +55,7 @@ CREATE TABLE `client` (
   `idRole` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idClient`),
   KEY `client_fk` (`idRole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +64,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
+INSERT INTO `client` VALUES (1,'admin','admin@gmail.com','admin',1),(2,'Isabel','isabelstreich@gmail.com','is',2),(3,'Dmytro','dlunhu@gmail.com','dl',2);
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-17 21:07:04
+-- Dump completed on 2020-05-18 13:47:41
