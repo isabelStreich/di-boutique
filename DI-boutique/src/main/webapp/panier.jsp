@@ -14,8 +14,6 @@
     <body>
         <%@include file="header.jsp" %>
 
-test de push
-
 
 
 
