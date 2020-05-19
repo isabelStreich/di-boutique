@@ -10,10 +10,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import manager.ProduitManager;
 
-/**
- *
- * @author dlunhu
- */
 public class ProduitAction {
 
     public static final String listeDeProduit = "attributListeDeProduit";
@@ -27,7 +23,7 @@ public class ProduitAction {
 
     public static void afficherLesProduitparIdCategorie(HttpServletRequest request, int IdCategorie) {
         //1 appeler manager
-        ArrayList<Produit> produit = ProduitManager.getByIdCat(IdCategorie);
+        ArrayList<Produit> produit = ProduitManager.getByCategorie(IdCategorie);
         // ajouter a la requette
         request.setAttribute(listeDeProduit, produit);
     }
