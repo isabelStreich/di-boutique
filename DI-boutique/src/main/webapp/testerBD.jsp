@@ -27,16 +27,16 @@
     </head>
     <body>
            <%
-ArrayList<Categorie> categorie = CategorieManager.getAllCategorie();
-for (int i=0;i<categorie.size();i++)
-{
-   out.println("<tr>");
-   out.println("<td>"+categorie.get(i).getIdCategorie()+"</td>");
-   out.println("<td>"+categorie.get(i).getNomCategorie()+"</td>");
-   out.println("<td>"+categorie.get(i).getImageCategorie()+"</td>");
-  
-   out.println("</tr>");
-}
+//ArrayList<Categorie> categorie = CategorieManager.getAllCategorie();
+//for (int i=0;i<categorie.size();i++)
+//{
+//   out.println("<tr>");
+//   out.println("<td>"+categorie.get(i).getIdCategorie()+"</td>");
+//   out.println("<td>"+categorie.get(i).getNomCategorie()+"</td>");
+//   out.println("<td><img src='img/"+categorie.get(i).getImageCategorie()+"'/></td>");
+//  
+//   out.println("</tr>");
+//}
 
 //
 //ArrayList<Produit> produit =ProduitManager.getAll();
@@ -54,7 +54,7 @@ for (int i=0;i<categorie.size();i++)
 //}
 
 Produit prod = ProduitManager.getById(1);
-     out.println("<tr>");
+   out.println("<tr>");
    out.println("<td>"+prod.getNomProduit()+"</td>");
    out.println("<td>"+prod.getDescriptionProduit()+"</td>");
    out.println("<td><img src='img/"+prod.getImageProduit()+"'/></td>");

@@ -23,7 +23,7 @@ public class ProduitManager {
 
     private static String queryGetAll = "select * from produit";
     private static String queryGetbyId = "select * from produit where idProduit = ?";
-    private static String queryGetbyCategorie = "select * from produit where categorie = ?";
+    private static String queryGetbyCategorie = "select * from produit where idCategorie = ?";
     private static String queryAdd = "insert into produit (nomProduit,idCategorie,imageProduit,descriptionProduit,prixProduit) values (?,?,?,?,?)";
     private static String queryUpdate = "UPDATE produits set nomProduit = ?,idCategorie = ?,imageProduit = ?,descriptionProduit = ?,prixProduit = ?";
     private static final String queryDelete = "delete produit  where id = ?";
