@@ -18,10 +18,10 @@ public class Produit {
     private String descriptionProduit;
     private double prixProduit;
 
-    private Produit() {
+    public Produit() {
     }
 
-    private Produit(int idProduit, String nomProduit, int idCategorie, String imageProduit, String descriptionProduit, double prixProduit) {
+    public Produit(int idProduit, String nomProduit, int idCategorie, String imageProduit, String descriptionProduit, double prixProduit) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.idCategorie = idCategorie;

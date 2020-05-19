@@ -19,81 +19,161 @@ import service.ConnectionBD;
  * @author istreich
  */
 public class ProduitManager {
-
-//Dmytro debut
-    public static ArrayList<Produit> getByIdCat(int idCat) {
-        ArrayList<Produit> retour = new ArrayList<>();
-        Iterable<Produit> produits = null;
-        for (Produit produit : produits) {
-            if (produit.getIdCategorie() == idCat) {
-                retour.add(produit);
-            }
-        }
-        return retour;
-    }
-//Dmytro fin
+//toutes les query/requete 
 
     private static String queryGetAll = "select * from produit";
+    private static String queryGetbyId = "select * from produit where idProduit = ?";
+    private static String queryGetbyCategorie = "select * from produit where categorie = ?";
+    private static String queryAdd = "insert into produit (nomProduit,idCategorie,imageProduit,descriptionProduit,prixProduit) values (?,?,?,?,?)";
+    private static String queryUpdate = "UPDATE produits set nomProduit = ?,idCategorie = ?,imageProduit = ?,descriptionProduit = ?,prixProduit = ?";
+    private static final String queryDelete = "delete produit  where id = ?";
 
+    //avoir tous les produit
     public static ArrayList<Produit> getAll() {
-
         ArrayList<Produit> retour = null;
-
-        PreparedStatement ps = ConnectionBD.getPs(queryGetAll);
-
         try {
+            PreparedStatement ps = ConnectionBD.getPs(queryGetAll);
             ResultSet result = ps.executeQuery();
 
             if (result.isBeforeFirst()) {
                 retour = new ArrayList<>();
                 while (result.next()) {
-//                 Produit p = new Produit();
-//                 p.setIdProduit(result.getInt("idProduit"));
-//                 p.setNomProduit(result.getString("nomProduit"));
-//                 p.setIdCategorie(result.getString("idCategorie"));
-
+                    Produit p = new Produit();
+                    p.setIdProduit(result.getInt("idProduit"));
+                    p.setNomProduit(result.getString("nomProduit"));
+                    p.setIdCategorie(result.getInt("idCategorie"));
+                    p.setDescriptionProduit(result.getString("descriptionProduit"));
+                    p.setImageProduit(result.getString("imageProduit"));
+                    p.setPrixProduit(result.getDouble("prixProduit"));
+                    retour.add(p);
                 }
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         ConnectionBD.close();
         return retour;
     }
 
-    private static String queryAdd = "insert into produit (nomProduit,imageProduit,descriptionProduit, prixProduit) values (?,?,?,?)";
+    //==============================================================
+    //faire une modification
+    public static ArrayList<Produit> update(int idProduit, String nomProduit, int idCategorie, String imageProduit, String descriptionProduit, double prixProduit) {
+        ArrayList<Produit> retour = null;
+        try {
+            PreparedStatement ps = ConnectionBD.getPs(queryUpdate);
+            ps.setInt(1, idProduit);
+            ps.setString(2, nomProduit);
+            ps.setInt(3, idCategorie);
+            ps.setString(4, imageProduit);
+            ps.setString(5, descriptionProduit);
+            ps.setDouble(6, prixProduit);
 
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConnectionBD.close();
+        return retour;
+    }
+
+    //==============================================================================
+    //avoir les produit par id
+    public static Produit getById(int idProduit) {
+        Produit retour = null;
+
+        try {
+            PreparedStatement ps = ConnectionBD.getPs(queryGetbyId);
+            ps.setInt(1, idProduit);
+            ResultSet result = ps.executeQuery();
+
+            if(result.next()){
+            Produit p = new Produit();
+
+            p.setIdProduit(result.getInt("idProduit"));
+            p.setNomProduit(result.getString("nomProduit"));
+            p.setIdCategorie(result.getInt("idCategorie"));
+            p.setDescriptionProduit(result.getString("descriptionProduit"));
+            p.setImageProduit(result.getString("imageProduit"));
+            p.setPrixProduit(result.getDouble("prixProduit"));
+            
+            retour = p;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConnectionBD.close();
+        return retour;
+    }
+//==============================================================================
+//avoir un produit par categorie
+
+    public static ArrayList<Produit> getByCategorie(int idCategorie) {
+        ArrayList<Produit> retour = null;
+
+        try {
+            PreparedStatement ps = ConnectionBD.getPs(queryGetbyCategorie);
+            ps.setInt(1, idCategorie);
+            ResultSet result = ps.executeQuery();
+
+            if (result.isBeforeFirst()) {
+                retour = new ArrayList<>();
+                while (result.next()) {
+                    Produit p = new Produit();
+
+                    p.setIdProduit(result.getInt("idProduit"));
+                    p.setNomProduit(result.getString("nomProduit"));
+                    p.setIdCategorie(result.getInt("idCategorie"));
+                    p.setDescriptionProduit(result.getString("descriptionProduit"));
+                    p.setImageProduit(result.getString("imageProduit"));
+                    p.setPrixProduit(result.getDouble("prixProduit"));
+                    retour.add(p);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConnectionBD.close();
+        return retour;
+    }
+
+    //=======================================================
+    //ajouter un produit
     public static boolean add(Produit produitToAdd) {
-        int nbModDansBd = 0;
+        int nbproduitToAdd = 0;
+
         try {
-            PreparedStatement preparedStatement = ConnectionBD.getPs(queryAdd);
-            preparedStatement.setString(1, produitToAdd.getNomProduit());
-            preparedStatement.setString(2, produitToAdd.getImageProduit());
-            preparedStatement.setString(3, produitToAdd.getDescriptionProduit());
-            preparedStatement.setDouble(4, produitToAdd.getPrixProduit());
-            nbModDansBd = preparedStatement.executeUpdate();
+            PreparedStatement ps = ConnectionBD.getPs(queryAdd);
+            ps.setInt(1, produitToAdd.getIdProduit());
+            ps.setString(2, produitToAdd.getNomProduit());
+            ps.setInt(3, produitToAdd.getIdCategorie());
+            ps.setString(4, produitToAdd.getImageProduit());
+            ps.setString(5, produitToAdd.getDescriptionProduit());
+            ps.setDouble(6, produitToAdd.getPrixProduit());
+
+            nbproduitToAdd = ps.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         ConnectionBD.close();
-        return nbModDansBd > 0;
+        return nbproduitToAdd > 0;
     }
 
-    private static final String queryDelete = "delete from roduit where id = ?";
-
+    //=======================================================
+    //eliminer un produit
     public static boolean delete(int idToDelete) {
-        int nbModDansBd = 0;
+        int nbProduitTODelete = 0;
+
         try {
-            PreparedStatement preparedStatement = ConnectionBD.getPs(queryDelete);
-            preparedStatement.setInt(1, idToDelete);
-            nbModDansBd = preparedStatement.executeUpdate();
+            PreparedStatement ps = ConnectionBD.getPs(queryDelete);
+            ps.setInt(1, idToDelete);
+
+            nbProduitTODelete = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ConnectionBD.close();
-        return nbModDansBd > 0;
-    }
 
+        ConnectionBD.close();
+        return nbProduitTODelete > 0;
+    }
 }

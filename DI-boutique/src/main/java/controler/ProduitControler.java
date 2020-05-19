@@ -35,6 +35,7 @@ public class ProduitControler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "";
+<<<<<<< HEAD
         // 1 recuperation
         String idCat = request.getParameter("idCat");
         String id = request.getParameter("id");
@@ -69,6 +70,41 @@ public class ProduitControler extends HttpServlet {
 
         //3 redirection
         request.getRequestDispatcher(url).forward(request, response);
+=======
+//        // 1 recuperation
+//        String idCat = request.getParameter("idCat");
+//        String id = request.getParameter("id");
+//        String action = request.getParameter("action");
+//
+//        //2 traitement
+//        if (idCat != null) { // affiche les animaux par categorie
+//            ArrayList<Produit> produits = ProduitManager.getByIdCat(Integer.parseInt(idCat));
+//            request.setAttribute("listProduit", produits);
+//            url = "produits.jsp";
+//        } else if (id != null) { //affiche un idProduit par id
+//            int idProduit = Integer.parseInt(id);
+//            ArrayList<Produit> produit = ProduitManager.getByIdCat(idProduit);
+//            if (action != null) {
+//                //ajouter un j aime au manager
+//                //recuperer produit par son iid
+//                //j aoute un j aime pour ce produit qui cet Id
+//                JaimeProduitManager.add(produit.getNom());
+//            }
+//            request.setAttribute("produit", produit);
+//            url = "produit.jsp";
+//        } else { // affiche tous les animaux
+//            ArrayList<Produit> produits = ProduitManager.getAll();
+//            request.setAttribute("listProduit", produits);
+//            url = "produits.jsp";
+//        }
+//        //ajouter les categories dans la requette
+//        request.setAttribute("listCategorie", CategorieManager.getAll());
+//        //doit ajouter le hashMapde jaime a la requette
+//        request.setAttribute("nbJaime", JaimeProduitManager.getNombreDeJaime());
+//
+//        //3 redirection
+//        request.getRequestDispatcher(url).forward(request, response);
+>>>>>>> 46e2a2a4283deda570653c67cb7a05f9f6ae0260
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
