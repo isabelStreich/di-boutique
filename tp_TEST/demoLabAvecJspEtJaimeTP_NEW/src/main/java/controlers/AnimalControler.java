@@ -3,25 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controler;
+package controlers;
 
-import entities.Produit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javabean.Animal;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import manager.*;
+import managers.AnimalManager;
+import managers.CategorieManager;
+import managers.JaimeAnimalManager;
 
 /**
  *
- * @author dlunhu
+ * @author jlidou
  */
-@WebServlet(name = "ProduitControler", urlPatterns = {"/produitControler"})
-public class ProduitControler extends HttpServlet {
+@WebServlet(name = "AnimalControler", urlPatterns = {"/animalControler"})
+public class AnimalControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,38 +36,38 @@ public class ProduitControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String url = "";
         // 1 recuperation
         String idCat = request.getParameter("idCat");
         String id = request.getParameter("id");
         String action = request.getParameter("action");
-        String prix = request.getParameter("prix");
-        String nom = request.getParameter("nom");
+
         //2 traitement
         if (idCat != null) { // affiche les animaux par categorie
-            ArrayList<Produit> produits = ProduitManager.getByIdCat(Integer.parseInt(idCat));
-            request.setAttribute("listProduit", produits);
-            url = "produits.jsp";
-        } else if (id != null) { //affiche un idProduit par id
-            int idProduit = Integer.parseInt(id);
-            ArrayList<Produit> produit = ProduitManager.getByIdCat(idProduit);
+            ArrayList<Animal> animals = AnimalManager.getByIdCat(Integer.parseInt(idCat));
+            request.setAttribute("listAnimal", animals);
+            url = "animals.jsp";
+        } else if (id != null) { //affiche un animal par id
+            int idAnimal = Integer.parseInt(id);
+            Animal animal = AnimalManager.getById(idAnimal);
             if (action != null) {
                 //ajouter un j aime au manager
-                //recuperer produit par son iid
-                //j aoute un j aime pour ce produit qui cet Id
-                JaimeProduitManager.add(produit.getNom());
-            }
-            request.setAttribute("produit", produit);
-            url = "produit.jsp";
+                    //recuperer l animal par son iid
+                    //j aoute un j aime pour cet animal qui cet Id
+                JaimeAnimalManager.add(animal.getNom());
+            }            
+            request.setAttribute("animal", animal);
+            url = "animal.jsp";
         } else { // affiche tous les animaux
-            ArrayList<Produit> produits = ProduitManager.getAll();
-            request.setAttribute("listProduit", produits);
-            url = "produits.jsp";
+            ArrayList<Animal> animals = AnimalManager.getAll();
+            request.setAttribute("listAnimal", animals);
+            url = "animals.jsp";
         }
         //ajouter les categories dans la requette
         request.setAttribute("listCategorie", CategorieManager.getAll());
         //doit ajouter le hashMapde jaime a la requette
-        request.setAttribute("nbJaime", JaimeProduitManager.getNombreDeJaime());
+        request.setAttribute("nbJaime", JaimeAnimalManager.getNombreDeJaime());
 
         //3 redirection
         request.getRequestDispatcher(url).forward(request, response);
