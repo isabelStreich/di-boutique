@@ -37,8 +37,8 @@
         <!--Menu/nav-->
         <nav>
             <ul>
-                <li><a class="active" href="accuiel.jsp">Accueil</a></li>
-                <li><a href="categorie.jsp">Categorie</a></li>
+                <li><a class="active" href="accueil.jsp">Accueil</a></li>
+                <li><a href="produits.jsp">Categorie</a></li>
                 <li><a href="produit.jsp">Produit</a></li>
                 <li><a href="login.jsp">S'inscrire</a></li>
             </ul>

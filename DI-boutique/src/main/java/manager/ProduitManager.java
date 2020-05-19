@@ -20,16 +20,34 @@ import service.ConnectionBD;
  */
 public class ProduitManager {
 
+<<<<<<< HEAD
     private static String queryGetAll = "select * from produit";
     private static String queryGetbyId="select * from produit where produitId = ?";
     private static String queryGetbyCategorie="select * from produit where categorie = ?";            
     private static String queryAdd = "insert into produit (nomProduit,idCategorie,imageProduit,descriptionProduit,prixProduit) values (?,?,?,?,?)";
     private static String queryUpdate="UPDATE produits ...";
     private static final String queryDelete = "delete produit fruit where id = ?";
+=======
+//Dmytro debut
+    public static ArrayList<Produit> getByIdCat(int idCat) {
+        ArrayList<Produit> retour = new ArrayList<>();
+        Iterable<Produit> produits = null;
+        for (Produit produit : produits) {
+            if (produit.getIdCategorie() == idCat) {
+                retour.add(produit);
+            }
+        }
+        return retour;
+    }
+//Dmytro fin
+
+    private static String queryGetAll = "select * from produit";
+>>>>>>> b85b68a20780e7804a656ca250713f2bc154427d
 
     public static ArrayList<Produit> getAll() {
 
         ArrayList<Produit> retour = null;
+<<<<<<< HEAD
         
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryGetAll);
@@ -69,10 +87,16 @@ public class ProduitManager {
     public static ArrayList<Produit> getById(int idProduit){
         ArrayList<Produit> retour = null;
         
+=======
+
+        PreparedStatement ps = ConnectionBD.getPs(queryGetAll);
+
+>>>>>>> b85b68a20780e7804a656ca250713f2bc154427d
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryGetbyId);
             ps.setInt(1, idProduit);
             ResultSet result = ps.executeQuery();
+<<<<<<< HEAD
             if (result.isBeforeFirst()) {
                 retour = new ArrayList<>();
                 while (result.next()) {
@@ -156,4 +180,59 @@ public class ProduitManager {
         ConnectionBD.close();
        return  nbProduitTODelete>0;
     }
+=======
+
+            if (result.isBeforeFirst()) {
+                retour = new ArrayList<>();
+                while (result.next()) {
+//                 Produit p = new Produit();
+//                 p.setIdProduit(result.getInt("idProduit"));
+//                 p.setNomProduit(result.getString("nomProduit"));
+//                 p.setIdCategorie(result.getString("idCategorie"));
+
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        ConnectionBD.close();
+        return retour;
+    }
+
+    private static String queryAdd = "insert into produit (nomProduit,imageProduit,descriptionProduit, prixProduit) values (?,?,?,?)";
+
+    public static boolean add(Produit produitToAdd) {
+        int nbModDansBd = 0;
+        try {
+            PreparedStatement preparedStatement = ConnectionBD.getPs(queryAdd);
+            preparedStatement.setString(1, produitToAdd.getNomProduit());
+            preparedStatement.setString(2, produitToAdd.getImageProduit());
+            preparedStatement.setString(3, produitToAdd.getDescriptionProduit());
+            preparedStatement.setDouble(4, produitToAdd.getPrixProduit());
+            nbModDansBd = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConnectionBD.close();
+        return nbModDansBd > 0;
+    }
+
+    private static final String queryDelete = "delete from roduit where id = ?";
+
+    public static boolean delete(int idToDelete) {
+        int nbModDansBd = 0;
+        try {
+            PreparedStatement preparedStatement = ConnectionBD.getPs(queryDelete);
+            preparedStatement.setInt(1, idToDelete);
+            nbModDansBd = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConnectionBD.close();
+        return nbModDansBd > 0;
+    }
+
+>>>>>>> b85b68a20780e7804a656ca250713f2bc154427d
 }
