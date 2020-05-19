@@ -41,7 +41,6 @@ public class CategorieManager {
                     listeCategorie.add(c);
                 }
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(CategorieManager.class.getName()).log(Level.SEVERE, null, ex);
         }
