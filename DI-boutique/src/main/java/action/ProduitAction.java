@@ -41,5 +41,4 @@ public class ProduitAction {
         ProduitManager.delete(idProduitSuppr);
         afficherTousLesProduit(request);
     }
-
 }
