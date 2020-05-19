@@ -25,7 +25,7 @@ public class ProduitManager {
     private static String queryGetbyCategorie = "select * from produit where categorie = ?";
     private static String queryAdd = "insert into produit (nomProduit,idCategorie,imageProduit,descriptionProduit,prixProduit) values (?,?,?,?,?)";
     private static String queryUpdate = "UPDATE produits set nomProduit = ?,idCategorie = ?,imageProduit = ?,descriptionProduit = ?,prixProduit = ?";
-    private static final String queryDelete = "delete produit fruit where id = ?";
+    private static final String queryDelete = "delete produit  where id = ?";
 
     //avoir tous les produit
     public static ArrayList<Produit> getAll() {
@@ -164,7 +164,7 @@ public class ProduitManager {
         int nbProduitTODelete = 0;
 
         try {
-            PreparedStatement ps = ConnectionBD.getPs(queryAdd);
+            PreparedStatement ps = ConnectionBD.getPs(queryDelete);
             ps.setInt(1, idToDelete);
 
             nbProduitTODelete = ps.executeUpdate();
