@@ -63,4 +63,37 @@ public class ProduitManager {
         return retour;
     }
 
+    private static String queryAdd = "insert into produit (nomProduit,imageProduit,descriptionProduit, prixProduit) values (?,?,?,?)";
+
+    public static boolean add(Produit produitToAdd) {
+        int nbModDansBd = 0;
+        try {
+            PreparedStatement preparedStatement = ConnectionBD.getPs(queryAdd);
+            preparedStatement.setString(1, produitToAdd.getNomProduit());
+            preparedStatement.setString(2, produitToAdd.getImageProduit());
+            preparedStatement.setString(3, produitToAdd.getDescriptionProduit());
+            preparedStatement.setDouble(4, produitToAdd.getPrixProduit());
+            nbModDansBd = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConnectionBD.close();
+        return nbModDansBd > 0;
+    }
+
+    private static final String queryDelete = "delete from roduit where id = ?";
+
+    public static boolean delete(int idToDelete) {
+        int nbModDansBd = 0;
+        try {
+            PreparedStatement preparedStatement = ConnectionBD.getPs(queryDelete);
+            preparedStatement.setInt(1, idToDelete);
+            nbModDansBd = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConnectionBD.close();
+        return nbModDansBd > 0;
+    }
+
 }
