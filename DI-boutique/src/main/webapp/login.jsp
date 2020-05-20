@@ -21,24 +21,20 @@
 
             <h2>Se connecter</h2> <br/> 
 
-            <form action="produitController" method="post">
+            <form action="loginServlet" method="post">
                 <div style="margin: 50px;">
 
                     <input type="hidden" name="page" value="login-form">
-                    <h4>Login : </h4> <br>
-                    <input type="email" name="email" placeholder="Login" value="dlunhu@gmail.com" required /><br/>
+                    <h4>Login : </h4> <br> 
+                    <input type="email" name="email" placeholder="Login" required /><br/>
 
                     <h4>Password : </h4> <br>                  
-                    <input type="password" name="password" laceholder="Password" value="dl" required/><br/>
+                    <input type="password" name="password" placeholder="Password" required/><br/>
 
-                    <input type="submit" name="controller" value="Se connecter" style="background-color: #696969;"/>
+                    <input type="submit" name="loginServlet" value="Se connecter" style="background-color: #696969;"/>
+                    <a href="loginServlet">S'inscrire</a>
                     <br>
 
-                    <h4><a href="produitController?page=logout" style="color: #696969;">Se déconnecter</a></h4>
-
-                    <!--<h4> <a href="controllerServlet?page=sign-up" value="Créer un compte" style="color:#696969;"> Click here for new user</a> </h4>-->
-
-                    <!--<h4><%=(isAdmin ? "Bonjour " + nom : "")%></h4>-->
                 </div>
             </form>
         </div>

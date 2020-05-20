@@ -4,6 +4,8 @@
     Author     : istreich
 --%>
 
+<%@page import="entities.User"%>
+<%@page import="manager.UserManager"%>
 <%@page import="manager.ProduitManager"%>
 <%@page import="manager.CategorieManager"%>
 <%@page import="action.ProduitAction"%>
@@ -52,17 +54,32 @@
 //    
 //    
 //}
+//
+//Produit prod = ProduitManager.getById(1);
+//   out.println("<tr>");
+//   out.println("<td>"+prod.getNomProduit()+"</td>");
+//   out.println("<td>"+prod.getDescriptionProduit()+"</td>");
+//   out.println("<td><img src='img/"+prod.getImageProduit()+"'/></td>");
+//   out.println("<td>"+prod.getPrixProduit()+"</td>");
+//   out.println("<td>"+prod.getIdProduit()+"</td>");
+// 
+//   out.println("</tr>");
 
-Produit prod = ProduitManager.getById(1);
+User user = UserManager.getUser("admin@gmail.com");
+
+
    out.println("<tr>");
-   out.println("<td>"+prod.getNomProduit()+"</td>");
-   out.println("<td>"+prod.getDescriptionProduit()+"</td>");
-   out.println("<td><img src='img/"+prod.getImageProduit()+"'/></td>");
-   out.println("<td>"+prod.getPrixProduit()+"</td>");
-   out.println("<td>"+prod.getIdProduit()+"</td>");
- 
+   out.println("<td>"+user.getEmail()+"</td>");
+   out.println("<td>"+user.getNomUser()+"</td>");
+   out.println("<td>"+user.getIdRole()+"</td>");
+   out.println("<td>"+UserManager.authenticateUser("admin@gmail.com", "admin")+"</td>");
    out.println("</tr>");
 
+
 %>
+
+
+
+
     </body>
 </html>

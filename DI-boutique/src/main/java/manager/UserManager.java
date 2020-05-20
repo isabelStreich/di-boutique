@@ -24,8 +24,8 @@ public class UserManager {
 
     //faire la requette- VERIFIER SI SONT CORRECTS!!!!!!!
     private static String queryGetAll = "select * from user";
-    private static String queryGetCheckTypeUser = "select * from idRole";
-    private static String queryGetLoginUser = "select * from user where (nomUser, password) values (?,?)";
+    private static String queryGetCheckTypeUser = "select * from user where email = ?";
+    private static String queryGetLoginUser = "select * from user where email=? and password=?";
     private static String querryAddUser = "insert into user (idUser,nomUser,email,password,idRole) values (?,?,?)";
     private static String queryDeleteUser = "delete from fruit where id = ?";
 
@@ -56,42 +56,39 @@ public class UserManager {
         return listeUser;
     }
 
-    public static ArrayList<User> getCheckTypeUser(int idRole) {
-        ArrayList<User> listeAdmin = new ArrayList<>();
+    public static User getUser(String emailToCheck) {
+        User user = new User();
 
         PreparedStatement ps = ConnectionBD.getPs(queryGetCheckTypeUser);
         try {
+            ps.setString(1, emailToCheck);
             ResultSet result = ps.executeQuery();
-            ps.setInt(1, idRole);
 
             if (result.isBeforeFirst()) {
-                listeAdmin = new ArrayList<>();
+
                 while (result.next()) {
                     User u = new User();
-                    u.setNomUser(result.getString("nomUser"));
+
                     u.setIdUser(result.getInt("idUser"));
                     u.setNomUser(result.getString("nomUser"));
                     u.setEmail(result.getString("email"));
                     u.setPassword(result.getString("password"));
                     u.setIdRole(result.getInt("idRole"));
-
-                    if (u.getIdRole() == 1) {
-                        listeAdmin.add(u);
-                    }
+                   user=u;
+            
                 }
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         ConnectionBD.close();
 
-        return listeAdmin;
+        return user;
     }
 
-    public static ArrayList<User> getLoginUser(String email, String password) {
-        ArrayList<User> loginUser = null;
+    public static boolean authenticateUser(String email, String password) {
+       
         PreparedStatement ps = ConnectionBD.getPs(queryGetLoginUser);
 
         try {
@@ -100,24 +97,13 @@ public class UserManager {
             ResultSet result = ps.executeQuery();
 
             if (result.isBeforeFirst()) {
-                loginUser = new ArrayList<>();
-                while (result.next()) {
-                    User u = new User();
-                    u.setNomUser(result.getString("nomUser"));
-                    u.setIdUser(result.getInt("idUser"));
-                    u.setNomUser(result.getString("nomUser"));
-                    u.setEmail(result.getString("email"));
-                    u.setPassword(result.getString("password"));
-                    u.setIdRole(result.getInt("idRole"));
-                    
-                    loginUser.add(u);
-                }
+                   return true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return loginUser;
+      return false;
     }
 
     public static boolean addUser(User userToAdd) {
