@@ -19,21 +19,21 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <% String categorieId = request.getParameter("idCategorie");
             ArrayList<Produit> produits = ProduitManager.getByCategorie(Integer.parseInt(categorieId));
         %>
-
-        <%
-            //affichage de tous les produits de la categorie
-            for (Produit p : produits) {
-                out.println("<tr>");
-                out.println("<td>" + p.getNomProduit() + "</td>");
-                out.println("<td>" + p.getDescriptionProduit() + "</td>");
-                out.println("<td><img src='img/" + p.getImageProduit() + "'/></td>");
-                out.println("<td>" + p.getPrixProduit() + "</td>");
-                out.println("<td>" + p.getIdProduit() + "</td>");
-                out.println("</tr>");
-            }
-        %>
+        <div id="products-container">
+            <div class="" style="width: 50%; display: flex;">
+                <!--affichage de tous les produits de la categorie-->
+                <%for (Produit p : produits) {%>
+                <h1><%= p.getNomProduit()%></h1>
+                <h3><%= p.getDescriptionProduit()%></h3>
+                <img src='img/<%=p.getImageProduit()%> '/> 
+                <h3><%=p.getPrixProduit()%></h3>
+                <h3><%= p.getIdProduit()%></h3>
+                <%}%>
+            </div>
+            <%@include file="footer.jsp" %>
     </body>
 </html>
