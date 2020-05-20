@@ -9,11 +9,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
- <% String produitId = request.getParameter("idProduit");
-          Produit produit = ProduitManager.getById(Integer.parseInt(produitId));
-          
-
-       %>
+<% String produitId = request.getParameter("idProduit");
+    Produit produit = ProduitManager.getById(Integer.parseInt(produitId));
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +19,7 @@
     </head>
     <body>
         <div>
-            <h1> <%= produit.getNomProduit() %></h1>
+            <h1> <%= produit.getNomProduit()%></h1>
             <div>
                 <img src='img/<%=produit.getImageProduit()%>'/>
                 <h2> <</h2>

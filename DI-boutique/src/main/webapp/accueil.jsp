@@ -12,30 +12,36 @@
         <title>JSP Page</title>
     </head>
     <body>
+<<<<<<< HEAD
          <%@include file="pagesJSP/header.jsp" %>
         <div>
             <div>
+=======
+        <%@include file="header.jsp" %>
+        <div id="products-container">
+            <div class="products">
+>>>>>>> c0971004bcb70208d0bab36bac9ea93b3ec12621
                 <img src="img/homme1.jpg" class="logo" alt="homme1">
                 <h3>Pour Lui</h3>
                 <h6><a href='controler?idCategorie=1' >Voir catalogue</a></h6>
             </div>
-            <div>
+            <div class="products">
                 <img src="img/femme1.jpg" class="logo" alt="femme1">
                 <h3>Pour Elle</h3>
                 <h6><a href='controler?idCategorie=2' >Voir catalogue</a></h6>
             </div>
-            <div>
+            <div class="products">
                 <img src="img/enfant1.jpg" class="logo" alt="enfant1">
                 <h3>Enfant</h3>
                 <h6><a href='controler?idCategorie=3' >Voir catalogue</a></h6>
 
             </div>
-            <div>
+            <div class="products">
                 <img src="img/accessoire1.jpg" class="logo" alt="accessoire1">
                 <h3>Accessoire</h3>
                 <h6><a href='controler?idCategorie=4' >Voir catalogue</a></h6>
             </div>
         </div>
-        //footer
+        <%@include file="footer.jsp" %>
     </body>
 </html>
