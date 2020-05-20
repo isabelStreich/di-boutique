@@ -107,7 +107,7 @@ input[type="submit"]:hover {
 }
 
 h1 {
-    font-family: 'sofia-regular-webfont';
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: blue;
 }
 
@@ -305,14 +305,12 @@ div.fotter-col {
     margin: 0 10px;
 }
 
-h2 {
-    color: blue;
-}
+
 
 h2, h3 {
-    font-family: 'sofia-regular-webfont';
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
-    text-decoration: underline;
+
 }
 
 footer p {

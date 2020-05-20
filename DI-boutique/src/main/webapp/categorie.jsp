@@ -24,16 +24,25 @@
             ArrayList<Produit> produits = ProduitManager.getByCategorie(Integer.parseInt(categorieId));
         %>
         <div id="products-container">
-            <div class="products" style="width: 50%; display: flex;">
+            <div class="products" style="width:40%;">
                 <!--affichage de tous les produits de la categorie-->
-                <%for (Produit p : produits) {%>
-                <h1><%= p.getNomProduit()%></h1>
-                <h3><%= p.getDescriptionProduit()%></h3>
-                <img src='img/<%=p.getImageProduit()%> '/> 
-                <h3><%=p.getPrixProduit()%></h3>
-                <h3><%= p.getIdProduit()%></h3>
+                <h1 style=" font-family: Verdana, Geneva, Tahoma, sans-serif; color: grey;"> CATALOGUE DES PRODUITS</h1>
+                <%for (Produit p : produits) {%>              
+                <img src='img/<%=p.getImageProduit()%>'/> 
+                <h2><%= p.getNomProduit()%></h2>
+                <h3><%= p.getDescriptionProduit()%></h3>               
+                <h2> Prix : <%=p.getPrixProduit()%></h2>
+                <h4><a href='Controler<%=(request.getParameter("id") == null ? "?id=" + p.getIdProduit() : "")%>'><%=(request.getParameter("id") == null ? "Afficher" : "Retour")%></a></h4>
+                <h4><a href='Controler' >Ajouter au panier</a></h4>
+                
+                <!--ici il faut ajouter le code du JAIME-->
+                <a href="Controler?id=<%=p.getIdProduit()%>&action=jaime">j'aime</a></h3>
+                <br><br>
+                <hr style="width:100%;"> <hr style="width:100%;"> 
+       <!--//          <h3><%= p.getIdProduit()%></h3>-->
                 <%}%>
             </div>
-            <%@include file="footer.jsp" %>
+        </div>
+        <%@include file="footer.jsp" %>
     </body>
 </html>
