@@ -20,7 +20,7 @@
                     <h2 style="color: blue">Bienvenue 
                         <%Cookie ck[] = request.getCookies();
                             if (ck != null) {
-                                String user = ck[1].getValue();
+                                String user = ck[0].getValue();
                                 if (!user.equals("") || user != null) {
                                     out.println("" + user);
                                 }

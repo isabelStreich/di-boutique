@@ -69,7 +69,5 @@ public class User {
     public void setIdRole(int idRole) {
         this.idRole = idRole;
     }
-    
-
 
 }

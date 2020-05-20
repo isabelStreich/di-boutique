@@ -367,7 +367,7 @@ footer>div>div:nth-child(3)>p:nth-child(4) {
 
 .products a, .products a:visited, .products a:hover, .products a:active {
     display: flex;
-    width: 50%;
+    width: 100%;
     padding: 10px;
     background-color: rgb(82, 158, 189);
     text-align: center;

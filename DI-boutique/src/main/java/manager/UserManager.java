@@ -5,6 +5,7 @@
  */
 package manager;
 
+import entities.Role;
 import entities.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -74,8 +75,8 @@ public class UserManager {
                     u.setEmail(result.getString("email"));
                     u.setPassword(result.getString("password"));
                     u.setIdRole(result.getInt("idRole"));
-                   user=u;
-            
+                    user = u;
+
                 }
             }
         } catch (SQLException ex) {
@@ -88,7 +89,7 @@ public class UserManager {
     }
 
     public static boolean authenticateUser(String email, String password) {
-       
+
         PreparedStatement ps = ConnectionBD.getPs(queryGetLoginUser);
 
         try {
@@ -97,13 +98,13 @@ public class UserManager {
             ResultSet result = ps.executeQuery();
 
             if (result.isBeforeFirst()) {
-                   return true;
+                return true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-      return false;
+        return false;
     }
 
     public static boolean addUser(User userToAdd) {
@@ -139,5 +140,4 @@ public class UserManager {
         ConnectionBD.close();
         return nbModDansBd > 0;
     }
-
 }

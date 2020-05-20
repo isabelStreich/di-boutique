@@ -10,7 +10,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 
-
 %>
 <!DOCTYPE html>
 <html>
@@ -30,15 +29,9 @@
                 <%for (Produit p : produits) {%>               
                 <h2><%= p.getNomProduit()%></h2> <br>
                 <img src='img/<%=p.getImageProduit()%>' class="logo"/>                
-<!--                <h3><%= p.getDescriptionProduit()%></h3>               
-            <h2> Prix : <%=p.getPrixProduit()%></h2>-->
-                <h4><a href='produit.jsp<%=(request.getParameter("produitId") == null ? "?idProduit=" + p.getIdProduit() : "")%>'><%=(request.getParameter("produitId") == null ? "Detail du produit" : "Retour")%></a></h4>
-                <h4><a href='controler' >Ajouter au panier</a></h4>
-
-
-                <br><br><br><br>
-                <!--<hr style="width:100%;"> <hr style="width:100%;">--> 
-       <!--//          <h3><%= p.getIdProduit()%></h3>-->
+                <a href='produit.jsp<%=(request.getParameter("produitId") == null ? "?idProduit=" + p.getIdProduit() : "")%>'><%=(request.getParameter("produitId") == null ? "Detail du produit" : "Retour")%></a>
+                <a href='controler' >Ajouter au panier</a>                
+                <br><br><br><br>                
                 <%}%>
             </div>
         </div>
