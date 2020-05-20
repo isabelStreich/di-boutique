@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //verification
         if (request.getParameter("email") == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
             
         } else {
 //             crear pag Error pasword
-            request.getRequestDispatcher("erreur.jsp").forward(request, response);
+            request.getRequestDispatcher("formulaire.jsp").forward(request, response);
             return;
         }
         

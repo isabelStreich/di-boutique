@@ -17,7 +17,7 @@
             <header>  
                 <div>
                     <h1 class="logo" style="color:gray">DI - Boutique &reg;</h1>
-                    <h2>Bienvenue 
+                    <h2 style="color: blue">Bienvenue 
                         <%Cookie ck[] = request.getCookies();
                             if (ck != null) {
                                 String user = ck[1].getValue();

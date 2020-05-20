@@ -32,7 +32,9 @@
                     <input type="password" name="password" placeholder="Password" required/><br/>
 
                     <input type="submit" name="loginServlet" value="Se connecter" style="background-color: #696969;"/>
-                    <a href="loginServlet">S'inscrire</a>
+                    <div>
+                    <a href="loginServlet" style="color:gray">S'inscrire</a>
+                    </div>
                     <br>
 
                 </div>
