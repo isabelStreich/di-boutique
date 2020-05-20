@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        //menu
+         <%@include file="pagesJSP/header.jsp" %>
         <div>
             <div>
                 <img src="img/homme1.jpg" class="logo" alt="homme1">
