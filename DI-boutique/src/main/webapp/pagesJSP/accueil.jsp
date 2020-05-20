@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="header.jsp" %>
+        <%@include file="pagesJSP/header.jsp" %>
         <div id="products-container">
             <div class="products">
                 <img src="img/homme1.jpg" class="logo" alt="homme1">
