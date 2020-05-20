@@ -9,7 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    
+
 
 %>
 <!DOCTYPE html>
@@ -19,25 +19,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <% String categorieId = request.getParameter("idCategorie");
-          ArrayList<Produit>produits = ProduitManager.getByCategorie(Integer.parseInt(categorieId));
-          
+        <% String categorieId = request.getParameter("idCategorie");
+            ArrayList<Produit> produits = ProduitManager.getByCategorie(Integer.parseInt(categorieId));
+        %>
 
-       %>
-       
-       <% 
-           //affichage de tous les produits de la categorie
-           for(Produit p : produits){
-           out.println("<tr>");
-   out.println("<td>"+p.getNomProduit()+"</td>");
-   out.println("<td>"+p.getDescriptionProduit()+"</td>");
-   out.println("<td><img src='img/"+p.getImageProduit()+"'/></td>");
-   out.println("<td>"+p.getPrixProduit()+"</td>");
-   out.println("<td>"+p.getIdProduit()+"</td>");
- 
-   out.println("</tr>");
-           
-       }
-       %>
+        <%
+            //affichage de tous les produits de la categorie
+            for (Produit p : produits) {
+                out.println("<tr>");
+                out.println("<td>" + p.getNomProduit() + "</td>");
+                out.println("<td>" + p.getDescriptionProduit() + "</td>");
+                out.println("<td><img src='img/" + p.getImageProduit() + "'/></td>");
+                out.println("<td>" + p.getPrixProduit() + "</td>");
+                out.println("<td>" + p.getIdProduit() + "</td>");
+                out.println("</tr>");
+            }
+        %>
     </body>
 </html>
