@@ -26,6 +26,9 @@
                 <img src='img/<%=produit.getImageProduit()%>'/>
                 <h3>Description: <%=produit.getDescriptionProduit()%></h3>
                 <h2> Prix : <%=produit.getPrixProduit()%></h2>
+                <div>
+                    <a href='accueil.jsp' type="submit">RETOUR</a>                       
+                </div>
             </div>
         </div>
         <%@include file="footer.jsp" %>
