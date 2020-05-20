@@ -4,6 +4,10 @@
     Author     : istreich
 --%>
 
+<%@page import="java.time.Instant"%>
+<%@page import="java.util.Date"%>
+<%@page import="entities.Commande"%>
+<%@page import="manager.PanierManager"%>
 <%@page import="entities.User"%>
 <%@page import="manager.UserManager"%>
 <%@page import="manager.ProduitManager"%>
@@ -65,16 +69,27 @@
 // 
 //   out.println("</tr>");
 
-User user = UserManager.getUser("admin@gmail.com");
+//User user = UserManager.getUser("admin@gmail.com");
+//
+//
+//   out.println("<tr>");
+//   out.println("<td>"+user.getEmail()+"</td>");
+//   out.println("<td>"+user.getNomUser()+"</td>");
+//   out.println("<td>"+user.getIdRole()+"</td>");
+//   out.println("<td>"+UserManager.authenticateUser("admin@gmail.com", "admin")+"</td>");
+//   out.println("</tr>");
+PanierManager.createdPanier(1, 200, new java.sql.Date(1000L));
+ArrayList<Commande> comandes = PanierManager.getAllPanier(1);
 
-
-   out.println("<tr>");
-   out.println("<td>"+user.getEmail()+"</td>");
-   out.println("<td>"+user.getNomUser()+"</td>");
-   out.println("<td>"+user.getIdRole()+"</td>");
-   out.println("<td>"+UserManager.authenticateUser("admin@gmail.com", "admin")+"</td>");
+for(Commande c :comandes){
+    out.println("<tr>");
+   out.println("<td>"+c.getIdCommande()+"</td>");
+   out.println("<td>"+c.getIdUser()+"</td>");
+   out.println("<td>"+c.getMontantCommande()+"</td>");
+   out.println("<td>"+c.getDateCommande()+"</td>");
+   out.println("<td>"+c.isIsopenpanier()+"</td>");
    out.println("</tr>");
-
+}
 
 %>
 

@@ -14,14 +14,18 @@ public class DetailCommande {
     private int idCommande;
     private int idProduit;
     private double prixProduit;
+     private int quantite;
 
-    private DetailCommande() {
+    public DetailCommande() {
     }
 
-    private DetailCommande(int idCommande, int idProduit, double prixProduit) {
+    
+
+    public DetailCommande(int idCommande, int idProduit, double prixProduit, int quantite) {
         this.idCommande = idCommande;
         this.idProduit = idProduit;
         this.prixProduit = prixProduit;
+        this.quantite = quantite;
     }
 
     public int getIdCommande() {
@@ -47,4 +51,14 @@ public class DetailCommande {
     public void setPrixProduit(double prixProduit) {
         this.prixProduit = prixProduit;
     }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    
 }

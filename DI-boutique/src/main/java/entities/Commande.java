@@ -15,17 +15,19 @@ public class Commande {
 
     private int idCommande;
     private int idUser;
-    private int montantCommande;
+    private double montantCommande;
     private Date dateCommande;
+    private boolean isopenpanier;
 
     public Commande() {
     }
 
-    public Commande(int idCommande, int idUser, int montantCommande, Date dateCommande) {
+    public Commande(int idCommande, int idUser, double montantCommande, Date dateCommande, boolean isopenpanier) {
         this.idCommande = idCommande;
         this.idUser = idUser;
         this.montantCommande = montantCommande;
         this.dateCommande = dateCommande;
+        this.isopenpanier = isopenpanier;
     }
 
     public int getIdCommande() {
@@ -44,11 +46,11 @@ public class Commande {
         this.idUser = idUser;
     }
 
-    public int getMontantCommande() {
+    public double getMontantCommande() {
         return montantCommande;
     }
 
-    public void setMontantCommande(int montantCommande) {
+    public void setMontantCommande(double montantCommande) {
         this.montantCommande = montantCommande;
     }
 
@@ -59,6 +61,16 @@ public class Commande {
     public void setDateCommande(Date dateCommande) {
         this.dateCommande = dateCommande;
     }
-    
 
+    public boolean isIsopenpanier() {
+        return isopenpanier;
+    }
+
+    public void setIsopenpanier(boolean isopenpanier) {
+        this.isopenpanier = isopenpanier;
+    }
+
+   
+
+    
 }

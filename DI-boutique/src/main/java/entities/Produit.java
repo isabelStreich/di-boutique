@@ -17,6 +17,7 @@ public class Produit {
     private String imageProduit;
     private String descriptionProduit;
     private double prixProduit;
+   
 
     public Produit() {
     }
@@ -28,6 +29,7 @@ public class Produit {
         this.imageProduit = imageProduit;
         this.descriptionProduit = descriptionProduit;
         this.prixProduit = prixProduit;
+       
     }
 
     public int getIdProduit() {
@@ -77,4 +79,8 @@ public class Produit {
     public void setPrixProduit(double prixProduit) {
         this.prixProduit = prixProduit;
     }
+
+    
+
+    
 }

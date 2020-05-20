@@ -5,6 +5,7 @@
  */
 package controler;
 
+import action.UserAction;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,6 +27,7 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //verification
+        // borrar el cookie
         if (request.getParameter("email") == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
@@ -47,7 +49,7 @@ public class LoginServlet extends HttpServlet {
             }
             
         } else {
-//             crear pag Error pasword
+//             
             request.getRequestDispatcher("formulaire.jsp").forward(request, response);
             return;
         }
