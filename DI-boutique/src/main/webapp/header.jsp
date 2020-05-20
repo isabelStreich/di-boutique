@@ -16,7 +16,7 @@
         <div id="wrapper">
             <header>  
                 <div>
-                    <h1>DI - Boutique</h1>
+                    <h1 class="logo" style="color:gray">DI - Boutique &reg;</h1>
                 </div>
                 <div id="search">
                     <div>  

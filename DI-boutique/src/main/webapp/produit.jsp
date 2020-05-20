@@ -4,6 +4,7 @@
     Author     : istreich
 --%>
 
+<%@page import="entities.Categorie"%>
 <%@page import="manager.ProduitManager"%>
 <%@page import="entities.Produit"%>
 <%@page import="java.util.ArrayList"%>
@@ -15,18 +16,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Detail du produit</title>
     </head>
     <body>
-        <div>
-            <h1> <%= produit.getNomProduit()%></h1>
-            <div>
+        <%@include file="header.jsp" %>
+        <div id="products-container">
+            <div class="products" style="width:40%;">
+                <h2> <%= produit.getNomProduit()%></h2>
                 <img src='img/<%=produit.getImageProduit()%>'/>
-                <h2> <</h2>
-                <fieldset>
-                    <p>Description: <%=produit.getDescriptionProduit()%></p>
-                </fieldset>
+                <h3>Description: <%=produit.getDescriptionProduit()%></h3>
+                <h2> Prix : <%=produit.getPrixProduit()%></h2>
             </div>
         </div>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

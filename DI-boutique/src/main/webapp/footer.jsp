@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="stylesheet" href="css/css.css" />
+        <link rel="stylesheet" href="css/css.css" />
         <title>Footer</title>
     </head>
     <body>
@@ -50,8 +50,9 @@
                         <img src="img/youtube.png" alt="Youtube" style="width:2em;">
                     </a>
                     <hr>
-                    <h6>Copyright &copy; 2020 - tous droits réservés!
-                    </h6>
+                    <h5 class="logo" style="color:whitesmoke">Copyright &copy; 2020 - tous droits réservés!
+                        DI - Boutique&reg; - Dmytro Isabel Boutique&reg;</h5>
+
                 </div>
             </div>
         </footer>

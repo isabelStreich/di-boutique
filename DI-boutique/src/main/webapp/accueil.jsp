@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Accuiel</title>
     </head>
     <body>  
-         <%@include file="header.jsp" %>
+        <%@include file="header.jsp" %>
         <div id="products-container">
             <div class="products">
                 <img src="img/homme1.jpg" class="logo" alt="homme1">
