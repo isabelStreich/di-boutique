@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +22,7 @@ import manager.UserManager;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/loginServlet"})
 public class LoginServlet extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -30,28 +31,27 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         
-         String email = request.getParameter("email");
-         String password = request.getParameter("password");
-
-
-         if(UserManager.authenticateUser(email,password)){
-              User userToCheck= UserManager.getUser(email);
-            if(userToCheck.getIdRole()== 1){
-             request.getRequestDispatcher("accueilAdmin.jsp").forward(request, response);
-         }else{
-            request.getRequestDispatcher("accueil.jsp").forward(request, response);
-         }
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        
+        if (UserManager.authenticateUser(email, password)) {
+            User userToCheck = UserManager.getUser(email);
+            Cookie c = new Cookie("user", userToCheck.getEmail());
+            c.setMaxAge(60 * 60 * 24 * 365);
+            response.addCookie(c);
+            if (userToCheck.getIdRole() == 1) {
+                request.getRequestDispatcher("accueilAdmin.jsp").forward(request, response);
+                
+            } else {
+                request.getRequestDispatcher("accueil.jsp").forward(request, response);
+            }
             
-         }else{
+        } else {
 //             crear pag Error pasword
-             request.getRequestDispatcher("erreur.jsp").forward(request, response);
-             return;
-         }
-              
-         
-         
-         
-         
+            request.getRequestDispatcher("erreur.jsp").forward(request, response);
+            return;
+        }
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
