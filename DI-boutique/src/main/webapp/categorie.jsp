@@ -24,7 +24,7 @@
             ArrayList<Produit> produits = ProduitManager.getByCategorie(Integer.parseInt(categorieId));
         %>
         <div id="products-container">
-            <div class="" style="width: 50%; display: flex;">
+            <div class="products" style="width: 50%; display: flex;">
                 <!--affichage de tous les produits de la categorie-->
                 <%for (Produit p : produits) {%>
                 <h1><%= p.getNomProduit()%></h1>

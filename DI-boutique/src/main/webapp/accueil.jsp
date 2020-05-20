@@ -11,16 +11,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-<<<<<<< HEAD
-         <%@include file="pagesJSP/header.jsp" %>
-        <div>
-            <div>
-=======
-        <%@include file="header.jsp" %>
+    <body>  
+         <%@include file="header.jsp" %>
         <div id="products-container">
             <div class="products">
->>>>>>> c0971004bcb70208d0bab36bac9ea93b3ec12621
                 <img src="img/homme1.jpg" class="logo" alt="homme1">
                 <h3>Pour Lui</h3>
                 <h6><a href='controler?idCategorie=1' >Voir catalogue</a></h6>
@@ -34,7 +28,6 @@
                 <img src="img/enfant1.jpg" class="logo" alt="enfant1">
                 <h3>Enfant</h3>
                 <h6><a href='controler?idCategorie=3' >Voir catalogue</a></h6>
-
             </div>
             <div class="products">
                 <img src="img/accessoire1.jpg" class="logo" alt="accessoire1">
