@@ -26,7 +26,7 @@
                     <%if (user == null) {%>
                     <h4 style="color:gray">Pas de session ou pas d'utilisateur dans la session</h4>
                     <%} else {%>
-                    <div> <h4 style="color:gray">Bonjour  <%= user.getNomUser()%></h4></div>
+                    <div> <h4 style="color:gray">Bonjour  <%=user.getNomUser()%></h4></div>
                     <%}%>
 
                 </div>

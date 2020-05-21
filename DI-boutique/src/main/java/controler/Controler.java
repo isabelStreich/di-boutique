@@ -42,7 +42,7 @@ public class Controler extends HttpServlet {
         String password = request.getParameter("password");
         String action = request.getParameter("action");
 
-        String urlRedirection = "WEB-INF/erreur404.jsp";
+        String urlRedirection = "erreur404.jsp";
 
         //traitement
         if (action != null && action.equals("logout")) {
@@ -53,7 +53,7 @@ public class Controler extends HttpServlet {
             User ufromManager = UserManager.checkUser(uToCheckUser);
             if (ufromManager != null) {
                 SessionManager.add(request, true, "user", ufromManager);
-                urlRedirection = "WEB-INF/accueil.jsp";
+                urlRedirection = "accueil.jsp";
             }
         }
         //redirection

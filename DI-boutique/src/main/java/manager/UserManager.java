@@ -26,8 +26,8 @@ public class UserManager {
     //faire la requette- VERIFIER SI SONT CORRECTS!!!!!!!
     private static String queryGetAll = "select * from user";
     private static String queryGetCheckTypeUser = "select * from user where email = ?";
-    private static String queryGetLoginUser = "select * from user where email=? and password=?";
-    private static String querryAddUser = "insert into user (idUser,nomUser,email,password,idRole) values (?,?,?)";
+    private static String queryGetLoginUser = "select * from user where email like ? and password like ?";
+    private static String querryAddUser = "insert into user (idUser,nomUser,email,password,idRole) values (?,?,?,?,?)";
     private static String queryDeleteUser = "delete from fruit where id = ?";
 
     public static ArrayList<User> getAll() {
@@ -117,7 +117,7 @@ public class UserManager {
             ps.setString(2, userToAdd.getNomUser());
             ps.setString(3, userToAdd.getEmail());
             ps.setString(4, userToAdd.getPassword());
-            ps.setInt(1, userToAdd.getIdRole());
+            ps.setInt(5, userToAdd.getIdRole());
 
             creerUser = ps.executeUpdate();
 
