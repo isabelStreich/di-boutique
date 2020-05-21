@@ -43,8 +43,8 @@
     <body>
         <%@include file="header.jsp" %>
         <div>
-            <input type="hidden" name="page" value="debutPanier">
-            <form action="loginServlet" method="post">
+           
+            <form action="panierController" method="post">
                 
                 <table>
                     <tr>
@@ -68,11 +68,12 @@
                         <td> </td>
                         <td> </td>
                         <td>Total : </td>
-                        <td> </td>
+                        <td><%= PanierManager.getByPrixCommande(c.getIdCommande()) %> </td>
                     </tr>
                     
                 </table>
-                <input type="submit" value="Soumettre">
+                    <input type="hidden" name="page" value="finPanier">
+                        <input type="submit" value="Soumettre">
                 </div>
             </form>
 

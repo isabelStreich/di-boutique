@@ -28,8 +28,9 @@ public class PanierManager {
     private static String queryCreatedPanier = "insert into commande (idUser, montantCommande,isOpenPanier) values (?,?,1)";
     private static String queryAddTOPanier = "insert into detailCommande (idCommande,idProduit,prixProduit,quantite) values (?,?,?,?)";
     private static String queryDeleteTOPanier = "Delete from commande where idCommande=?";
-    private static String queryClosePanier = "Update isopenpanier = 0 from commande where idUser=?";
+    private static String queryClosePanier = "UPDATE commande SET isOpenPanier = 0 WHERE idCommande=?";
     private static String queryGetPanierDetail = "select * from detailCommande where idCommande=?";
+    private static String queryGetByIdCommande = "select * from commande where idCommande=?";
 
     public static ArrayList<Commande> getAllPanier(int idUser) {
         ArrayList<Commande> commandes = new ArrayList<Commande>();
@@ -58,19 +59,55 @@ public class PanierManager {
         return commandes;
     }
     
-    public static void createdPanier(int idUser, double montantCommande){
+    public static int createdPanier(int idUser, double montantCommande){
         
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryCreatedPanier);
             ps.setInt(1, idUser);
             ps.setDouble(2, montantCommande);
-            
+                      
             ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()){
+             return rs.getInt(1);
+        }
+            
         } catch (SQLException ex) {
             Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
         }
          ConnectionBD.close();
-        return;
+        return -1;
+    }
+    
+    public static Commande getByIdCommande(int idCommande){
+        Commande resultCommande= null;
+         
+        try {
+            PreparedStatement ps = ConnectionBD.getPs(queryGetByIdCommande);
+            ps.setInt(1, idCommande);
+           
+            ResultSet result = ps.executeQuery();
+            
+            if (result.isBeforeFirst()) {
+                
+                while (result.next()) {
+                    Commande c = new Commande();
+                    c.setIdCommande(result.getInt("idCommande"));
+                    c.setIdUser(result.getInt("idUser"));
+                    c.setMontantCommande(result.getDouble("montantCommande"));
+                    c.setIsOpenPanier(result.getBoolean("isOpenPanier"));
+                    resultCommande= c;
+                }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         ConnectionBD.close();
+        
+        return resultCommande;
     }
 
     public static int AddTOPanier (DetailCommande commandeToAdd){
@@ -107,11 +144,11 @@ public class PanierManager {
         return nbModDansBd > 0;
     }
     
-    public static int closePanier (int idUser){
+    public static int closePanier (int idCommande){
         
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryClosePanier);
-            ps.setInt(1, idUser);
+            ps.setInt(1, idCommande);
             return ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,5 +183,17 @@ public class PanierManager {
         }
         ConnectionBD.close();
         return detailCommandes;
+    }
+    public static double getByPrixCommande(int idComande)
+    {
+        double total = 0;
+        ArrayList<DetailCommande> listCommande = getPanierDetail(idComande);
+        
+        for(DetailCommande dc : listCommande)
+        {
+            total += (double) (dc.getQuantite() * dc.getPrixProduit());
+        }
+        
+        return total;
     }
 }

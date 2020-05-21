@@ -25,11 +25,11 @@
                         <input type="text" name="nomUser" placeholder="Nom" required><br><br>
                         <input type="text" name="email" placeholder="Email" required><br><br>
                         <input type="text" name="password"placeholder="Password"required><br><br>
-<!--                        Vous êtes :
+                        Vous êtes :
                         <select name='idRole'required>
                             <option value="2">User</option>
                             <option value="1">Admin</option>                           
-                        </select>-->
+                        </select>
                         <h4><input type="submit" name="loginServlet" value="Soumettre" style="background-color: #696969;"/></h4>
                     </fieldset>
                 </div>
