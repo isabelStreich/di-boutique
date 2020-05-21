@@ -87,7 +87,7 @@ for(Commande c :comandes){
    out.println("<td>"+c.getIdUser()+"</td>");
    out.println("<td>"+c.getMontantCommande()+"</td>");
    out.println("<td>"+c.getDateCommande()+"</td>");
-   out.println("<td>"+c.isIsopenpanier()+"</td>");
+   out.println("<td>"+c.isOpenPanier()+"</td>");
    out.println("</tr>");
 }
 

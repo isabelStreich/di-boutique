@@ -22,8 +22,8 @@ import service.ConnectionBD;
  */
 public class PanierManager {
 
-    private static String queryGetAllPanier = "select * from commande where idUser = ? and isopenpanier=1";
-    private static String queryCreatedPanier = "insert into commande (idUser,montantCommande,dateCommande,isopenpanier) values (?,?,?,1)";
+    private static String queryGetAllPanier = "select * from commande where idUser = ? and isOpenPanier=1";
+    private static String queryCreatedPanier = "insert into commande (idUser, montantCommande,dateCommande,isOpenPanier) values (?,?,?,1)";
     private static String queryDeleteTOPanier = "Delete from commande where idCommande=?";
     private static String queryAddTOPanier = "insert into DetailCommande (idCommande,idProduit,prixProduit,quantite) values (???";
     private static String queryClosePanier = "Update isopenpanier = 0 from commande where idUser=?";
@@ -44,7 +44,7 @@ public class PanierManager {
                     c.setIdUser(result.getInt("idUser"));
                     c.setMontantCommande(result.getDouble("montantCommande"));
                     c.setDateCommande(result.getDate("dateCommande"));
-                    c.setIsopenpanier(result.getBoolean("isopenpanier"));
+                    c.setIsOpenPanier(result.getBoolean("isOpenPanier"));
                     commandes.add(c);
                 }
             }
