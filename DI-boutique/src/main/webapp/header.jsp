@@ -20,9 +20,6 @@
             <header>  
                 <div>
                     <h1 class="logo" style="color:gray">DI - Boutique &reg;</h1>
-<<<<<<< HEAD
-                   
-=======
                 </div>
                 <div>
                     <a href="controler?action=logout"><h4 class="logo" style="color:gray">Log out</h4></a>
@@ -31,7 +28,7 @@
                     <%} else {%>
                     <div> <h4 style="color:gray">Bonjour  <%= user.getNomUser()%></h4></div>
                     <%}%>
->>>>>>> 2b7c8e73ea49663693436ebe91295070070627f4
+
                 </div>
                 <div id="search">
                     <div>  
