@@ -3,7 +3,10 @@
     Created on : May 18, 2020, 8:43:22 AM
     Author     : dlunhu
 --%>
-
+<%@page import="entities.User"%>
+<%
+    User user = (User) session.getAttribute("user");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +20,18 @@
             <header>  
                 <div>
                     <h1 class="logo" style="color:gray">DI - Boutique &reg;</h1>
+<<<<<<< HEAD
                    
+=======
+                </div>
+                <div>
+                    <a href="controler?action=logout"><h4 class="logo" style="color:gray">Log out</h4></a>
+                    <%if (user == null) {%>
+                    <h4 style="color:gray">Pas de session ou pas d'utilisateur dans la session</h4>
+                    <%} else {%>
+                    <div> <h4 style="color:gray">Bonjour  <%= user.getNomUser()%></h4></div>
+                    <%}%>
+>>>>>>> 2b7c8e73ea49663693436ebe91295070070627f4
                 </div>
                 <div id="search">
                     <div>  
@@ -31,7 +45,7 @@
                     </div>
                     <div>
                         <input type="submit" action="/controler......" value="Mon Panier">
-                    </div>
+                    </div>                    
                 </div> 
             </header> 
         </div>

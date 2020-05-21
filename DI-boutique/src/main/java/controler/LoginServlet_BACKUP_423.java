@@ -48,8 +48,14 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("accueil.jsp").forward(request, response);
             }
             
-
+<<<<<<< HEAD
         } else {
+//             
+=======
+        } 
+        else {
+//             crear pag Error pasword
+>>>>>>> 2b7c8e73ea49663693436ebe91295070070627f4
             request.getRequestDispatcher("formulaire.jsp").forward(request, response);
             return;
         }

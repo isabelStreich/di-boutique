@@ -19,13 +19,13 @@
                     <input type="hidden" name="page" value="login-form">
                     <fieldset> 
                         <legend><h2>Formulaire</h2></legend>
-                        <label> Nom : <input type="text" name="nomUser"></label><br><br>
-                        <label> Email :<input type="text" name="email"></label> <br><br>
-                        <label> Password :<input type="text" name="password"></label><br><br>
-                        <select name='idRole'>
-                            <option disabled required>Faire le choix :</option>
-                            <option value="1">Admin</option>
+                        <input type="text" name="nomUser" placeholder="Nom" required><br><br>
+                        <input type="text" name="email" placeholder="Email" required><br><br>
+                        <input type="text" name="password"placeholder="Password"required><br><br>
+                        Vous êtes :
+                        <select name='idRole'required>
                             <option value="2">User</option>
+                            <option value="1">Admin</option>                           
                         </select>
                         <h4><input type="submit" name="loginServlet" value="Soumettre" style="background-color: #696969;"/></h4>
                     </fieldset>

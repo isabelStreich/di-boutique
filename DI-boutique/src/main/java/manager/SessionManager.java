@@ -5,14 +5,22 @@
  */
 package manager;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author istreich
+ * @author dlunhu
  */
-public class SessionManger {
+public class SessionManager {
+
+    // creer la session 
     public static HttpSession recuperer(HttpServletRequest request, boolean creerSession) {
         HttpSession session = null;
         if (creerSession) {

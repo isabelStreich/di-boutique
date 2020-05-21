@@ -48,8 +48,8 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("accueil.jsp").forward(request, response);
             }
             
-
         } else {
+//             
             request.getRequestDispatcher("formulaire.jsp").forward(request, response);
             return;
         }
