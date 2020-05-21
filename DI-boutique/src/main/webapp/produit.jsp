@@ -27,7 +27,7 @@
                 <h3>Description: <%=produit.getDescriptionProduit()%></h3>
                 <h2> Prix : <%=produit.getPrixProduit()%> CAD</h2>
                 <a href='accueil.jsp' type="submit">RETOUR</a>   
-                <a href='controler' >Ajouter au panier</a>
+                <a href="loginServlet?page=debutPanier&idProduit=<%=produit.getIdProduit()%>">Ajouter au panier</a>
                 <!--if admin : ajouter bouton modifier-->
             </div>
         </div>

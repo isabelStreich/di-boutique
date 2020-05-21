@@ -13,10 +13,17 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
+<<<<<<< HEAD
         <div id="products-container" style="width: 100%; margin-right: 200px;"> 
+=======
+        <div id="products-container"> 
+            
+>>>>>>> 9fa45615bdae3dab6fdcf12f3edd0141ff71c982
             <form action="loginServlet" method="post">
                 <div class="products">
-                    <input type="hidden" name="page" value="login-form">
+                    
+                    <input type="hidden" name="page" value="inscription">
+                    
                     <fieldset> 
                         <legend><h2>Formulaire</h2></legend>
                         <input type="text" name="nomUser" placeholder="Nom" required><br><br>

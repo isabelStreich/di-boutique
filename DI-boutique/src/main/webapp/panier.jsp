@@ -4,14 +4,18 @@
     Author     : istreich
 --%>
 
+<%@page import="manager.PanierManager"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entities.Commande"%>
+<%@page import="manager.SessionManager"%>
 <%@page import="entities.DetailCommande"%>
 <%@page import="manager.ProduitManager"%>
 <%@page import="entities.Produit"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% Produit p = new Produit();
-    DetailCommande detailCommande = new DetailCommande();
-
+<%
+    Commande c = (Commande) SessionManager.getByKey(request, false, "panier");
+    ArrayList<DetailCommande> dcs = PanierManager.getPanierDetail(c.getIdCommande());
 %>
 <!DOCTYPE html>
 <html>
@@ -39,32 +43,41 @@
     <body>
         <%@include file="header.jsp" %>
         <div>
-            <input type="hidden" name="page" value="debutPanier">
-            <table>
-                <tr>
-                    <th> Produit </th>  
-                    <th> Quantité </th> 
-                    <th> Enlever </th>
-                    <th> Ajouter </th> 
-                    <th> Prix </th>  
-                </tr>
-                <tr>
-                    <td><%p.getNomProduit();%></td>
-                    <td><%detailCommande.getQuantite();%></td>
-                    <td><input type="submit" value="-">  </td>
-                    <td><input type="submit" value="+"> </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-                   <input type="hidden" name="page" value="FinPanier">
-        <%@include file="footer.jsp" %>
-    </body>
-</html>
+           
+            <form action="panierController" method="post">
+                
+                <table>
+                    <tr>
+                        <th> Produit </th>  
+                        <th> Quantité </th> 
+                        <th> Enlever </th>
+                        <th> Ajouter </th> 
+                        <th> Prix </th>  
+                    </tr>
+                    <%for (DetailCommande dc : dcs){%>
+                    <tr>
+                        <td><%= dc.getIdProduit()%></td>
+                        <td><%= dc.getQuantite()%></td>
+                        <td><input type="submit" value="-"></td>
+                        <td><input type="submit" value="+"></td>
+                        <td><%= dc.getPrixProduit()%></td>
+                    </tr>
+                    <%}%>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>Total : </td>
+                        <td><%= PanierManager.getByPrixCommande(c.getIdCommande()) %> </td>
+                    </tr>
+                    
+                </table>
+                    <input type="hidden" name="page" value="finPanier">
+                        <input type="submit" value="Soumettre">
+                </div>
+            </form>
+
+            
+            </body>
+            <%@include file="footer.jsp" %>
+            </html>

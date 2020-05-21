@@ -41,6 +41,7 @@ public class Controler extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String action = request.getParameter("action");
+        String nomUser = request.getParameter("nomUser");
 
         String urlRedirection = "erreur404.jsp";
 
@@ -49,7 +50,7 @@ public class Controler extends HttpServlet {
             SessionManager.destroy(request, false);
 
         } else if (action != null && action.equals("email")) {
-            User uToCheckUser = new User(email, password, "");
+            User uToCheckUser = new User(email, password,"");
             User ufromManager = UserManager.checkUser(uToCheckUser);
             if (ufromManager != null) {
                 SessionManager.add(request, true, "user", ufromManager);
@@ -58,6 +59,11 @@ public class Controler extends HttpServlet {
         }
         //redirection
         //request.getRequestDispatcher(urlRedirection).forward(request, response);
+        
+//        **********************************************************************
+//String nomUser= request.getParameter("nomUser");
+
+
     }
 
     @Override

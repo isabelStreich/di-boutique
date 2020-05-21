@@ -4,6 +4,7 @@
     Author     : istreich
 --%>
 
+<%@page import="entities.DetailCommande"%>
 <%@page import="java.time.Instant"%>
 <%@page import="java.util.Date"%>
 <%@page import="entities.Commande"%>
@@ -76,6 +77,7 @@
 //   out.println("<td>"+user.getIdRole()+"</td>");
 //   out.println("<td>"+UserManager.authenticateUser("admin@gmail.com", "admin")+"</td>");
 //   out.println("</tr>");
+<<<<<<< HEAD
             PanierManager.createdPanier(1, 200, new java.sql.Date(1000L));
             ArrayList<Commande> comandes = PanierManager.getAllPanier(1);
 
@@ -90,6 +92,39 @@
             }
 
         %>
+=======
+//PanierManager.createdPanier(1, 5000);
+//ArrayList<Commande> comandes = PanierManager.getAllPanier(1);
+//
+//for(Commande c :comandes){
+//    out.println("<tr>");
+//   out.println("<td>"+c.getIdCommande()+"</td>");
+//   out.println("<td>"+c.getIdUser()+"</td>");
+//   out.println("<td>"+c.getMontantCommande()+"</td>");
+//  
+//   out.println("<td>"+c.isIsOpenPanier()+"</td>");
+//   out.println("</tr>");
+//}
+//DetailCommande dc = new DetailCommande();
+//dc.setIdCommande(1);
+//dc.setIdProduit(1);
+//dc.setPrixProduit(100);
+//dc.setQuantite(2);
+//PanierManager.AddTOPanier(dc);
+//ArrayList<DetailCommande> dcs = PanierManager.getPanierDetail(dc.getIdCommande());
+//
+//for(DetailCommande dc1 : dcs){
+//    out.println("<h1>Detalle de la commande </h1>");
+//   out.println("<tr>");
+//   out.println("<td>"+dc1.getIdCommande()+"</td>");
+//   out.println("<td>"+dc1.getIdProduit()+"</td>");
+//   out.println("<td>"+dc1.getPrixProduit()+"</td>");
+//   out.println("<td>"+dc1.getQuantite()+"</td>");
+//   out.println("</tr>");
+//}
+PanierManager.closePanier(47);
+%>
+>>>>>>> 9fa45615bdae3dab6fdcf12f3edd0141ff71c982
 
 
 
