@@ -5,6 +5,7 @@
  */
 package controler;
 
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import manager.SessionManager;
+import manager.UserManager;
 
 /**
  *
@@ -31,39 +34,32 @@ public class Controler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-//        String categorieId = request.getParameter("idCategorie");
-        
-        
-        
-     request.getRequestDispatcher("categorie.jsp").forward(request, response);
-     
-     
-        
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Controler</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Controler at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        request.getRequestDispatcher("categorie.jsp").forward(request, response);
+
+        //LOGOUT TRAITEMENT
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String action = request.getParameter("action");
+
+        String urlRedirection = "WEB-INF/erreur404.jsp";
+
+        //traitement
+        if (action != null && action.equals("logout")) {
+            SessionManager.destroy(request, false);
+
+        } else if (action != null && action.equals("email")) {
+            User uToCheckUser = new User(email, password, "");
+            User ufromManager = UserManager.checkUser(uToCheckUser);
+            if (ufromManager != null) {
+                SessionManager.add(request, true, "user", ufromManager);
+                urlRedirection = "WEB-INF/accueil.jsp";
+            }
         }
+        //redirection
+        //request.getRequestDispatcher(urlRedirection).forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -93,5 +89,4 @@ public class Controler extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

@@ -28,7 +28,7 @@
                 <h1 style=" font-family: Verdana, Geneva, Tahoma, sans-serif; color: grey;"> CATALOGUE DES PRODUITS</h1>
                 <%for (Produit p : produits) {%>               
                 <h2><%= p.getNomProduit()%></h2> <br>
-                <img src='img/<%=p.getImageProduit()%>' class="logo"/>                
+                <img src='img/<%=p.getImageProduit()%>' class="logo"/>  <br>               
                 <a href='produit.jsp<%=(request.getParameter("produitId") == null ? "?idProduit=" + p.getIdProduit() : "")%>'><%=(request.getParameter("produitId") == null ? "Detail du produit" : "Retour")%></a>
                 <a href='controler' >Ajouter au panier</a>                
                 <br><br><br><br>                

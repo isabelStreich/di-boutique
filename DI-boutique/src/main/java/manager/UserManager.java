@@ -140,4 +140,20 @@ public class UserManager {
         ConnectionBD.close();
         return nbModDansBd > 0;
     }
+
+//    private static User user = new User("etudiant", "isi", "toto");
+//    private static ArrayList<User> listeUser = new ArrayList<>();
+    /**
+     *
+     * @param uToCheck utilisateur a verifier
+     * @return retour null si pas bon login ou pwd ou retourne le user
+     */
+    public static User checkUser(User uToCheck) {
+        User retour = null;
+        User user = null;
+        if (uToCheck.getEmail().equals(user.getEmail()) && uToCheck.getPassword().equals(user.getPassword())) {
+            retour = user;
+        }
+        return retour;
+    }
 }

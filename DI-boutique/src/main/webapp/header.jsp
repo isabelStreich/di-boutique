@@ -3,7 +3,10 @@
     Created on : May 18, 2020, 8:43:22 AM
     Author     : dlunhu
 --%>
-
+<%@page import="entities.User"%>
+<%
+    User user = (User) session.getAttribute("user");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,14 +20,14 @@
             <header>  
                 <div>
                     <h1 class="logo" style="color:gray">DI - Boutique &reg;</h1>
-                    <h2 style="color: blue">Bienvenue 
-                        <%Cookie ck[] = request.getCookies();
-                            if (ck != null) {
-                                String user = ck[0].getValue();
-                                if (!user.equals("") || user != null) {
-                                    out.println("" + user);
-                                }
-                            }%>!!!</h2>
+                </div>
+                <div>
+                    <a href="controler?action=logout"><h4 class="logo" style="color:gray">Log out</h4></a>
+                    <%if (user == null) {%>
+                    <h4 style="color:gray">Pas de session ou pas d utilisateur dans la session</h4>
+                    <%} else {%>
+                    <div> <h4 style="color:gray">Bonjour  <%= user.getNomUser()%></h4></div>
+                    <%}%>
                 </div>
                 <div id="search">
                     <div>  
@@ -38,7 +41,7 @@
                     </div>
                     <div>
                         <input type="submit" action="/controler......" value="Mon Panier">
-                    </div>
+                    </div>                    
                 </div> 
             </header> 
         </div>

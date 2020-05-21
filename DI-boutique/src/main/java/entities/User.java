@@ -30,6 +30,10 @@ public class User {
         this.idRole = idRole;
     }
 
+    public User(String email, String password, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getIdUser() {
         return idUser;
     }
