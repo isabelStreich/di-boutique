@@ -22,12 +22,10 @@
                     <h1 class="logo" style="color:gray">DI - Boutique &reg;</h1>
                 </div>
                 <div>
-                    <a href="controler?action=logout"><h4 class="logo" style="color:gray">Log out</h4></a>
-                    <%if (user == null) {%>
-                     <h4 style="color:gray">Pas de session ou pas d'utilisateur dans la session</h4>
-                    <%} else {%>
-                    <div> <h4 style="color:gray">Bonjour  <%= user.getNomUser()%></h4></div>
-                    <%}%>
+                    
+                    <a href="loginServlet?page=logout"><h4 class="logo" style="color:gray">Log out</h4></a>
+                    
+                     
                 </div>
                 <div id="search">
                     <div>  
@@ -40,7 +38,7 @@
                         <input type="submit" value="chercher">                        
                     </div>
                     <div>
-                        <input type="submit" action="/controler......" value="Mon Panier">
+                        <input type="submit" action="panier.jsp" value="Mon Panier">
                     </div>                    
                 </div> 
             </header> 

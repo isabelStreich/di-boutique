@@ -13,7 +13,13 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <h1 style="color:red">...Oops....erreur HTTP 404</h1>
-        <h1 style="color:gray">Désolé, la page n'a pas trouvé!</h1>
+        <fieldset>
+            <div>
+                <h1 style="color:red">...Oops....erreur HTTP 404</h1>
+                <h1 style="color:gray">Désolé. Page non trouvé!</h1>
+            </div>
+        </fieldset>
+
+        <%@include file="footer.jsp" %>
     </body>
 </html>

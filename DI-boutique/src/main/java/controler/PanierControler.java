@@ -41,19 +41,19 @@ public class PanierControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         String page = request.getParameter("page");
-        
+
+        String page = request.getParameter("page");
+
         if (page.equals("debutPanier")) {
             //        ***********************************************************************
             //recuperar idProduit
             String produitId = request.getParameter("idProduit");
-            
+
             int idProduit = Integer.parseInt(produitId);
-            
+
             String email = getCookie("user", request.getCookies()).getValue();
             User userLoggedIn = UserManager.getUser(email);
-            
+
             ArrayList<Commande> commandes = PanierManager.getAllPanier(userLoggedIn.getIdUser());
 
             boolean panierFound = false;
@@ -65,15 +65,15 @@ public class PanierControler extends HttpServlet {
                     break;
                 }
             }
-            
+
             if (!panierFound) {
                 // no hay que crear un panier siempre...
                 int commandeCreated = PanierManager.createdPanier(userLoggedIn.getIdUser(), 0);
-                 maCommande = PanierManager.getByIdCommande(commandeCreated);
+                maCommande = PanierManager.getByIdCommande(commandeCreated);
             }
 
             Produit p = ProduitManager.getById(idProduit);
-            
+
             //mettre le panier dans la session
             SessionManager.add(request, true, "panier", maCommande);
             DetailCommande detailCommande = new DetailCommande();
@@ -84,8 +84,22 @@ public class PanierControler extends HttpServlet {
             PanierManager.AddTOPanier(detailCommande);
             request.getRequestDispatcher("panier.jsp").forward(request, response);
         }
-        
-        if(page.equals("finPanier")){
+        if (page.equals("add")) {
+            String idProduit = request.getParameter("idProduit");
+
+            Commande maComande = (Commande) SessionManager.getByKey(request, false, "panier");
+            PanierManager.changePanierDetail(maComande.getIdCommande(), Integer.parseInt(idProduit), +1);
+            request.getRequestDispatcher("panier.jsp").forward(request, response);
+        }
+        if (page.equals("delete")) {
+
+            String idProduit = request.getParameter("idProduit");
+            Commande maComande = (Commande) SessionManager.getByKey(request, false, "panier");
+            PanierManager.changePanierDetail(maComande.getIdCommande(), Integer.parseInt(idProduit), -1);
+            request.getRequestDispatcher("panier.jsp").forward(request, response);
+
+        }
+        if (page.equals("finPanier")) {
             //fermer le panier et apeller a PAnierManager
             Commande panier = (Commande) SessionManager.getByKey(request, false, "panier");
             PanierManager.closePanier(panier.getIdCommande());
@@ -93,22 +107,17 @@ public class PanierControler extends HttpServlet {
 //            Commande panierNew = new Commande ();
 //            panierNew
             //redirectionar a una pag en la cual affiche el mensaje de: commande recu
-             request.getRequestDispatcher("commandeRecu.jsp").forward(request, response);
+            request.getRequestDispatcher("commandeRecu.jsp").forward(request, response);
         }
-        
-        
-        
-        
-        
-        
-        
-        response.setContentType("text/html;charset=UTF-8");
+
+        response.setContentType(
+                "text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PanierControler</title>");            
+            out.println("<title>Servlet PanierControler</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet PanierControler at " + request.getContextPath() + "</h1>");
@@ -117,7 +126,7 @@ public class PanierControler extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

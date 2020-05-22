@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,6 +30,19 @@ public class ConnectionBD {
             Class.forName("org.mariadb.jdbc.Driver");
             connection = DriverManager.getConnection(urlConnection, login, pwd);
             retour = connection.prepareStatement(query);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConnectionBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retour;
+    }
+    public static PreparedStatement getPs(String query, String autoColumn) {
+        PreparedStatement retour = null;
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+            connection = DriverManager.getConnection(urlConnection, login, pwd);
+            retour = connection.prepareStatement( query,new String[]{autoColumn});
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ConnectionBD.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

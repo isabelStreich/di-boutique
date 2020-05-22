@@ -13,7 +13,13 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <h1 style="color:red">......Erreur HTTP 500</h1>
-        <h1 style="color:yellow">Le problème vient de serveur ou le programmeur s'est trompé!</h1>     
+        <fieldset>
+            <div>
+                <h1 style="color:red">......Erreur HTTP 500</h1>
+                <h1 style="color:yellow">Le problème vient de serveur ou le programmeur s'est trompé!</h1>  
+            </div>
+        </fieldset>
+
+        <%@include file="footer.jsp" %>
     </body>
 </html>

@@ -45,7 +45,7 @@
         <div>
            
             <form action="panierController" method="post">
-                
+                 <input type="hidden" name="page" value="tablePanier">
                 <table>
                     <tr>
                         <th> Produit </th>  
@@ -55,11 +55,15 @@
                         <th> Prix </th>  
                     </tr>
                     <%for (DetailCommande dc : dcs){%>
+                    
+                    <input type="hidden" name="idProduit" value="<%= dc.getIdProduit()%>">
                     <tr>
-                        <td><%= dc.getIdProduit()%></td>
+                        <td><%= dc.getIdProduit()%> </td>
                         <td><%= dc.getQuantite()%></td>
-                        <td><input type="submit" value="-"></td>
-                        <td><input type="submit" value="+"></td>
+                        <td><a href="panierController?page=add&idProduit=<%=dc.getIdProduit()%>" style="color: black" >ajouter</a></td>
+                        <td><a href="panierController?page=delete&idProduit=<%=dc.getIdProduit()%>" style="color: black">suprimer</a></td>
+<!--                        <td><input type="submit" value="-"></td>
+                        <td><input type="submit" value="+"></td>-->
                         <td><%= dc.getPrixProduit()%></td>
                     </tr>
                     <%}%>
@@ -72,12 +76,15 @@
                     </tr>
                     
                 </table>
-                    <input type="hidden" name="page" value="finPanier">
-                        <input type="submit" value="Soumettre">
+                  
+                       
                 </div>
             </form>
-
-            
+  
+                    <form action="panierController" method="post">
+                        <input type="hidden" name="page" value="finPanier">
+                         <input type="submit" value="Soumettre">
+                    </form>
             </body>
             <%@include file="footer.jsp" %>
             </html>

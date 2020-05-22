@@ -41,11 +41,6 @@ public class LoginServlet extends HttpServlet {
         User userToCheck = null;
 
         if (page.equals("login-form")) {
-            // borrar el cookie
-            if (request.getParameter("email") == null && page.equals("login-form")) {
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                return;
-            }
 
             String email = request.getParameter("email");
             String password = request.getParameter("password");
@@ -55,7 +50,7 @@ public class LoginServlet extends HttpServlet {
             if (UserManager.authenticateUser(email, password)) {
 
                 Cookie c = new Cookie("user", userToCheck.getEmail());
-                c.setMaxAge(60 * 60 * 24 * 365);
+                c.setMaxAge(60 * 60 * 24 * 60);
                 response.addCookie(c);
                 if (userToCheck.getIdRole() == 1) {
                     request.getRequestDispatcher("accueilAdmin.jsp").forward(request, response);
@@ -69,70 +64,32 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
         }
+        if (page.equals("logout")) {
 
-        if (page.equals("debutPanier")) {
-            //        ***********************************************************************
-            //recuperar idProduit
-            String produitId = request.getParameter("idProduit");
-            
-            int idProduit = Integer.parseInt(produitId);
-            
-            String email = getCookie("user", request.getCookies()).getValue();
-            User userLoggedIn = UserManager.getUser(email);
-            
-            ArrayList<Commande> commandes = PanierManager.getAllPanier(userLoggedIn.getIdUser());
-
-            boolean panierFound = false;
-            Commande maCommande = null;
-            for (Commande c : commandes) {
-                if (c.isIsOpenPanier()) {
-                    panierFound = true;
-                    maCommande = c;
-                    break;
-                }
-            }
-            
-            if (!panierFound) {
-                // no hay que crear un panier siempre...
-                int commandeCreated = PanierManager.createdPanier(userLoggedIn.getIdUser(), 0);
-                 maCommande = PanierManager.getByIdCommande(commandeCreated);
-            }
-
-            Produit p = ProduitManager.getById(idProduit);
-            
-            //mettre le panier dans la session
-            SessionManager.add(request, true, "panier", maCommande);
-            DetailCommande detailCommande = new DetailCommande();
-            detailCommande.setIdCommande(maCommande.getIdCommande());
-            detailCommande.setIdProduit(idProduit);
-            detailCommande.setQuantite(1);
-            detailCommande.setPrixProduit(p.getPrixProduit());
-            PanierManager.AddTOPanier(detailCommande);
-            request.getRequestDispatcher("panier.jsp").forward(request, response);
+            Cookie ck = getCookie("user", request.getCookies());
+            ck.setMaxAge(0);
+            response.addCookie(ck);
+            request.getRequestDispatcher("logout.jsp").forward(request, response);
         }
-
-//        ***********************************************************************
 ////            FORMULAIRE
- if (page.equals("inscription")){
-        String nomUser = request.getParameter("nomUser");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String idRole = request.getParameter("idRole");
-        String action = request.getParameter("action");
-        
-        User newUser= new User ();
-        newUser.setNomUser(nomUser);
-        newUser.setEmail(email);
-        newUser.setPassword(password);
-        newUser.setIdRole(Integer.parseInt(idRole));
-        
-        if (action != null && action.equals("add")) {
+        if (page.equals("inscription")) {
+            String nomUser = request.getParameter("nomUser");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String idRole = request.getParameter("idRole");
+            String action = request.getParameter("action");
 
+            User newUser = new User();
+            newUser.setNomUser(nomUser);
+            newUser.setEmail(email);
+            newUser.setPassword(password);
+            newUser.setIdRole(Integer.parseInt(idRole));
             UserManager.addUser(newUser);
-       
-
+            //agregar el cookie
+            Cookie userCookie = new Cookie("user", email);
+            response.addCookie(userCookie);
+            request.getRequestDispatcher("accueil.jsp").forward(request, response);
         }
- }
 //        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -144,15 +101,15 @@ public class LoginServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Bienvenue " + request.getContextPath() + "</h1>");
-            
+
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
+
     public static Cookie getCookie(String name, Cookie[] cookies) {
         for (Cookie c : cookies) {
-            if(c.getName().equals(name)) {
+            if (c.getName().equals(name)) {
                 return c;
             }
         }

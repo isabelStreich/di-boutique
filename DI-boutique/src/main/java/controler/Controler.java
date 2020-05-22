@@ -37,26 +37,26 @@ public class Controler extends HttpServlet {
 
         request.getRequestDispatcher("categorie.jsp").forward(request, response);
 
-        //LOGOUT TRAITEMENT
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String action = request.getParameter("action");
-        String nomUser = request.getParameter("nomUser");
-
-        String urlRedirection = "erreur404.jsp";
-
-        //traitement
-        if (action != null && action.equals("logout")) {
-            SessionManager.destroy(request, false);
-
-        } else if (action != null && action.equals("email")) {
-            User uToCheckUser = new User(email, password,"");
-            User ufromManager = UserManager.checkUser(uToCheckUser);
-            if (ufromManager != null) {
-                SessionManager.add(request, true, "user", ufromManager);
-                urlRedirection = "accueil.jsp";
-            }
-        }
+//        //LOGOUT TRAITEMENT
+//        String email = request.getParameter("email");
+//        String password = request.getParameter("password");
+//        String action = request.getParameter("action");
+//        String nomUser = request.getParameter("nomUser");
+//
+//        String urlRedirection = "erreur404.jsp";
+//
+//        //traitement
+//        if (action != null && action.equals("logout")) {
+//            SessionManager.destroy(request, false);
+//
+//        } else if (action != null && action.equals("email")) {
+//            User uToCheckUser = new User(email, password,"");
+//            User ufromManager = UserManager.checkUser(uToCheckUser);
+//            if (ufromManager != null) {
+//                SessionManager.add(request, true, "user", ufromManager);
+//                urlRedirection = "accueil.jsp";
+//            }
+//        }
         //redirection
         //request.getRequestDispatcher(urlRedirection).forward(request, response);
         

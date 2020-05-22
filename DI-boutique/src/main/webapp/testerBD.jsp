@@ -108,7 +108,13 @@
 //   out.println("<td>"+dc1.getQuantite()+"</td>");
 //   out.println("</tr>");
 //}
-PanierManager.closePanier(47);
+User isa = UserManager.getUser("isabelstreich@gmail.com");
+    out.println("<h1>Detalle isa </h1>");
+   out.println("<tr>");
+   out.println("<td>"+isa.getEmail()+"</td>");
+   out.println("<td>"+isa.getNomUser()+"</td>");
+   out.println("<td>"+isa.getPassword()+"</td>");
+   out.println("</tr>");
 %>
 
 

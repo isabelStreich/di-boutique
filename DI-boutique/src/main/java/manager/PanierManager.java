@@ -11,6 +11,7 @@ import entities.Produit;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,7 +31,9 @@ public class PanierManager {
     private static String queryDeleteTOPanier = "Delete from commande where idCommande=?";
     private static String queryClosePanier = "UPDATE commande SET isOpenPanier = 0 WHERE idCommande=?";
     private static String queryGetPanierDetail = "select * from detailCommande where idCommande=?";
+    private static String querychangePanierDetail = "UPDATE DetailCommande SET quantite = quantite + ? WHERE idCommande=? and idProduit=?";
     private static String queryGetByIdCommande = "select * from commande where idCommande=?";
+    private static String queryUpdateByPrixCommande = "UPDATE commande SET montantCommande =  ? WHERE idCommande=?";
 
     public static ArrayList<Commande> getAllPanier(int idUser) {
         ArrayList<Commande> commandes = new ArrayList<Commande>();
@@ -47,7 +50,7 @@ public class PanierManager {
                     c.setIdCommande(result.getInt("idCommande"));
                     c.setIdUser(result.getInt("idUser"));
                     c.setMontantCommande(result.getDouble("montantCommande"));
-                    
+
                     c.setIsOpenPanier(result.getBoolean("isOpenPanier"));
                     commandes.add(c);
                 }
@@ -58,80 +61,81 @@ public class PanierManager {
         ConnectionBD.close();
         return commandes;
     }
-    
-    public static int createdPanier(int idUser, double montantCommande){
-        
+
+    public static int createdPanier(int idUser, double montantCommande) {
+
         try {
-            PreparedStatement ps = ConnectionBD.getPs(queryCreatedPanier);
+            PreparedStatement ps = ConnectionBD.getPs(queryCreatedPanier, "idCommande");
             ps.setInt(1, idUser);
             ps.setDouble(2, montantCommande);
-                      
+
             ps.executeUpdate();
-            
+
             ResultSet rs = ps.getGeneratedKeys();
-        if (rs.next()){
-             return rs.getInt(1);
-        }
-            
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-         ConnectionBD.close();
+        ConnectionBD.close();
         return -1;
     }
-    
-    public static Commande getByIdCommande(int idCommande){
-        Commande resultCommande= null;
-         
+
+    public static Commande getByIdCommande(int idCommande) {
+        Commande resultCommande = null;
+
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryGetByIdCommande);
             ps.setInt(1, idCommande);
-           
+
             ResultSet result = ps.executeQuery();
-            
+
             if (result.isBeforeFirst()) {
-                
+
                 while (result.next()) {
                     Commande c = new Commande();
                     c.setIdCommande(result.getInt("idCommande"));
                     c.setIdUser(result.getInt("idUser"));
                     c.setMontantCommande(result.getDouble("montantCommande"));
                     c.setIsOpenPanier(result.getBoolean("isOpenPanier"));
-                    resultCommande= c;
+                    resultCommande = c;
                 }
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         ConnectionBD.close();
-        
+
+        ConnectionBD.close();
+
         return resultCommande;
     }
 
-    public static int AddTOPanier (DetailCommande commandeToAdd){
-        int creerComande=0;
-           
+    public static int AddTOPanier(DetailCommande commandeToAdd) {
+        int creerComande = 0;
+
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryAddTOPanier);
             ps.setInt(1, commandeToAdd.getIdCommande());
             ps.setInt(2, commandeToAdd.getIdProduit());
             ps.setDouble(3, commandeToAdd.getPrixProduit());
             ps.setInt(4, commandeToAdd.getQuantite());
-            
-           creerComande= ps.executeUpdate();
-            
+
+            creerComande = ps.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         ConnectionBD.close();
         return creerComande;
     }
-     public static boolean deleteToPanier(int idToDelete) {
+
+    public static boolean deleteToPanier(int idToDelete) {
         int nbModDansBd = 0;
-          
+
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryDeleteTOPanier);
             ps.setInt(1, idToDelete);
@@ -139,13 +143,13 @@ public class PanierManager {
         } catch (SQLException ex) {
             Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
+
         ConnectionBD.close();
         return nbModDansBd > 0;
     }
-    
-    public static int closePanier (int idCommande){
-        
+
+    public static int closePanier(int idCommande) {
+
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryClosePanier);
             ps.setInt(1, idCommande);
@@ -153,23 +157,22 @@ public class PanierManager {
         } catch (SQLException ex) {
             Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-         ConnectionBD.close();
-         return 0;
+        ConnectionBD.close();
+        return 0;
     }
-    
-    public static ArrayList<DetailCommande> getPanierDetail (int idCommande){
-        ArrayList<DetailCommande>detailCommandes = new ArrayList<DetailCommande>();
-        
-        
+
+    public static ArrayList<DetailCommande> getPanierDetail(int idCommande) {
+        ArrayList<DetailCommande> detailCommandes = new ArrayList<DetailCommande>();
+
         try {
             PreparedStatement ps = ConnectionBD.getPs(queryGetPanierDetail);
-            ps.setInt(1,idCommande);
+            ps.setInt(1, idCommande);
             ResultSet result = ps.executeQuery();
-            
+
             if (result.isBeforeFirst()) {
                 detailCommandes = new ArrayList<>();
                 while (result.next()) {
-                    DetailCommande  dc = new DetailCommande();
+                    DetailCommande dc = new DetailCommande();
                     dc.setIdCommande(result.getInt("idCommande"));
                     dc.setIdProduit(result.getInt("idProduit"));
                     dc.setPrixProduit(result.getDouble("prixProduit"));
@@ -177,23 +180,53 @@ public class PanierManager {
                     detailCommandes.add(dc);
                 }
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         ConnectionBD.close();
         return detailCommandes;
     }
-    public static double getByPrixCommande(int idComande)
-    {
+
+    public static int changePanierDetail(int idCommande, int idProduit, int change) {
+
+        try {
+            PreparedStatement ps = ConnectionBD.getPs(querychangePanierDetail);
+            ps.setInt(1, change);
+            ps.setInt(2, idCommande);
+            ps.setInt(3, idProduit);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        ConnectionBD.close();
+        return change;
+    }
+
+    public static double getByPrixCommande(int idComande) {
         double total = 0;
         ArrayList<DetailCommande> listCommande = getPanierDetail(idComande);
-        
-        for(DetailCommande dc : listCommande)
-        {
+
+        for (DetailCommande dc : listCommande) {
             total += (double) (dc.getQuantite() * dc.getPrixProduit());
         }
-        
+
+        updateByPrixCommande(idComande,total);
         return total;
+    }
+
+    public static void updateByPrixCommande(int idComande, double total) {
+
+        try {
+            PreparedStatement ps = ConnectionBD.getPs(queryUpdateByPrixCommande);
+            ps.setDouble(1, total);
+            ps.setInt(2, idComande);
+
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PanierManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConnectionBD.close();
     }
 }

@@ -27,7 +27,7 @@ public class UserManager {
     private static String queryGetAll = "select * from user";
     private static String queryGetCheckTypeUser = "select * from user where email = ?";
     private static String queryGetLoginUser = "select * from user where email like ? and password like ?";
-    private static String querryAddUser = "insert into user (idUser,nomUser,email,password,idRole) values (?,?,?,?,?)";
+    private static String querryAddUser = "insert into user (idUser,nomClient,email,password,idRole) values (?,?,?,?,?)";
     private static String queryDeleteUser = "delete from fruit where id = ?";
 
     public static ArrayList<User> getAll() {
@@ -40,7 +40,7 @@ public class UserManager {
                 while (result.next()) {//pour parcourir le resultset
                     User u = new User();
                     u.setIdUser(result.getInt("idUser"));
-                    u.setNomUser(result.getString("nomUser"));
+                    u.setNomUser(result.getString("nomClient"));
                     u.setEmail(result.getString("email"));
                     u.setPassword(result.getString("password"));
                     u.setIdRole(result.getInt("idRole"));
@@ -71,7 +71,7 @@ public class UserManager {
                     User u = new User();
 
                     u.setIdUser(result.getInt("idUser"));
-                    u.setNomUser(result.getString("nomUser"));
+                    u.setNomUser(result.getString("nomClient"));
                     u.setEmail(result.getString("email"));
                     u.setPassword(result.getString("password"));
                     u.setIdRole(result.getInt("idRole"));
