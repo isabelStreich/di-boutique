@@ -53,7 +53,7 @@ CREATE TABLE `commande` (
   `montantCommande` double NOT NULL,
   `isOpenPanier` tinyint(1) NOT NULL,
   PRIMARY KEY (`idCommande`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `commande` (
 
 LOCK TABLES `commande` WRITE;
 /*!40000 ALTER TABLE `commande` DISABLE KEYS */;
-INSERT INTO `commande` VALUES (47,2,0,0),(48,2,0,0),(49,2,0,1),(50,0,0,0);
+INSERT INTO `commande` VALUES (60,2,5175,0),(61,2,5175,0),(62,8,975,0),(63,9,2925,0),(64,9,1165,0);
 /*!40000 ALTER TABLE `commande` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ CREATE TABLE `detailcommande` (
 
 LOCK TABLES `detailcommande` WRITE;
 /*!40000 ALTER TABLE `detailcommande` DISABLE KEYS */;
-INSERT INTO `detailcommande` VALUES (10,1,975,1),(10,1,975,1),(10,5,1085,1),(10,9,40,1),(10,9,40,1),(10,9,40,1),(10,9,40,1),(10,1,975,1),(10,5,1085,1),(10,5,1085,1),(10,1,975,1),(46,1,975,1),(46,9,40,1),(46,5,1085,1),(46,5,1085,1),(46,5,1085,1),(46,5,1085,1),(46,5,1085,1),(46,5,1085,1),(46,1,975,1),(47,9,40,1),(47,1,975,1),(47,1,975,1),(47,5,1085,1),(48,1,975,1),(49,5,1085,1),(50,1,975,1),(50,5,1085,1);
+INSERT INTO `detailcommande` VALUES (10,1,975,1),(10,1,975,1),(10,5,1085,1),(10,9,40,1),(10,9,40,1),(10,9,40,1),(10,9,40,1),(10,1,975,1),(10,5,1085,1),(10,5,1085,1),(10,1,975,1),(46,1,975,1),(46,9,40,1),(46,5,1085,1),(46,5,1085,1),(46,5,1085,1),(46,5,1085,1),(46,5,1085,1),(46,5,1085,1),(46,1,975,1),(47,9,40,1),(47,1,975,1),(47,1,975,1),(47,5,1085,1),(48,1,975,1),(49,5,1085,1),(50,1,975,1),(50,5,1085,1),(51,5,1085,1),(51,1,975,1),(52,1,975,1),(53,1,975,1),(53,5,1085,1),(53,9,40,1),(53,13,1540,1),(54,1,975,1),(54,1,975,1),(54,13,1540,1),(55,9,40,1),(55,1,975,1),(55,1,975,1),(55,1,975,1),(55,1,975,1),(49,1,975,1),(49,1,975,1),(49,1,975,1),(49,1,975,1),(49,1,975,1),(49,1,975,1),(57,1,975,1),(57,1,975,1),(57,1,975,1),(57,1,975,1),(57,1,975,1),(57,1,975,1),(57,1,975,1),(57,1,975,1),(57,1,975,1),(58,1,975,1),(58,1,975,1),(58,1,975,1),(58,1,975,1),(58,1,975,1),(59,1,975,4),(59,1,975,4),(59,1,975,4),(59,1,975,4),(59,1,975,4),(59,1,975,4),(59,1,975,4),(60,1,975,3),(60,5,1085,2),(60,9,40,2),(61,1,975,3),(61,5,1085,2),(61,9,40,2),(62,1,975,1),(63,1,975,3),(64,9,40,2),(64,5,1085,1);
 /*!40000 ALTER TABLE `detailcommande` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +160,7 @@ CREATE TABLE `user` (
   `idRole` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idUser`),
   KEY `client_fk` (`idRole`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +169,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','admin@gmail.com','admin',1),(2,'Isabel','isabelstreich@gmail.com','is',2),(3,'Dmytro','dlunhu@gmail.com','dl',2);
+INSERT INTO `user` VALUES (1,'admin','admin@gmail.com','admin',1),(2,'Isabel','isabelstreich@gmail.com','is',2),(3,'Dmytro','dlunhu@gmail.com','dl',2),(4,'etu','etu@mail.com','etu',2),(5,'mariano','mar@gmail.com','mail',1),(6,'test','tester@gmail.com','test',2),(7,'toto','totos@gmail.com','toto',2),(8,'test','testte@gmail.com','abc',2),(9,'toto','ttiti@gmail.com','123',2),(10,'test','test@profe.com','test',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,4 +186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-21 19:05:06
+-- Dump completed on 2020-05-22 13:21:03

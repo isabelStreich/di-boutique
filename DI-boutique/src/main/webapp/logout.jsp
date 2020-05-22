@@ -13,8 +13,8 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <form>
-            <fieldset>
+        <form id="products-container">
+            <fieldset class="products">
                 <input type="hidden" name="page" value="logout">
                 <h2>LogOut Fait!</h2>
             </fieldset>
