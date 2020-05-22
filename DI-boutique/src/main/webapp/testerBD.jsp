@@ -22,18 +22,18 @@
 //     Produit produit = (Produit) request.getAttribute("produit");
 //     ProduitAction.afficherTousLesProduit(request);
 //   
-    %>
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-   
-        
-        
+
+
+
     </head>
     <body>
-           <%
+        <%
 //ArrayList<Categorie> categorie = CategorieManager.getAllCategorie();
 //for (int i=0;i<categorie.size();i++)
 //{
@@ -44,7 +44,6 @@
 //  
 //   out.println("</tr>");
 //}
-
 //
 //ArrayList<Produit> produit =ProduitManager.getAll();
 //for (int i=0; i<produit.size();i++){
@@ -69,7 +68,6 @@
 //   out.println("<td>"+prod.getIdProduit()+"</td>");
 // 
 //   out.println("</tr>");
-
 //User user = UserManager.getUser("admin@gmail.com");
 //
 //
@@ -79,6 +77,22 @@
 //   out.println("<td>"+user.getIdRole()+"</td>");
 //   out.println("<td>"+UserManager.authenticateUser("admin@gmail.com", "admin")+"</td>");
 //   out.println("</tr>");
+<<<<<<< HEAD
+            PanierManager.createdPanier(1, 200, new java.sql.Date(1000L));
+            ArrayList<Commande> comandes = PanierManager.getAllPanier(1);
+
+            for (Commande c : comandes) {
+                out.println("<tr>");
+                out.println("<td>" + c.getIdCommande() + "</td>");
+                out.println("<td>" + c.getIdUser() + "</td>");
+                out.println("<td>" + c.getMontantCommande() + "</td>");
+                out.println("<td>" + c.getDateCommande() + "</td>");
+                out.println("<td>" + c.isIsOpenPanier() + "</td>");
+                out.println("</tr>");
+            }
+
+        %>
+=======
 //PanierManager.createdPanier(1, 5000);
 //ArrayList<Commande> comandes = PanierManager.getAllPanier(1);
 //
@@ -116,6 +130,7 @@ User isa = UserManager.getUser("isabelstreich@gmail.com");
    out.println("<td>"+isa.getPassword()+"</td>");
    out.println("</tr>");
 %>
+>>>>>>> 9fa45615bdae3dab6fdcf12f3edd0141ff71c982
 
 
 

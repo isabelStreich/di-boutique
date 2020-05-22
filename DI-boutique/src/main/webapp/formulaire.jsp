@@ -13,8 +13,9 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <div id="products-container"> 
-            
+
+        <div id="products-container" style="width: 100%; margin-right: 200px;"> 
+
             <form action="loginServlet" method="post">
                 <div class="products">
                     

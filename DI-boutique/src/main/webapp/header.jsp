@@ -22,10 +22,8 @@
                     <h1 class="logo" style="color:gray">DI - Boutique &reg;</h1>
                 </div>
                 <div>
-                    
                     <a href="loginServlet?page=logout"><h4 class="logo" style="color:gray">Log out</h4></a>
-                    
-                     
+ 
                 </div>
                 <div id="search">
                     <div>  
